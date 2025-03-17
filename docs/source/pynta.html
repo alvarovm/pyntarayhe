@@ -1,0 +1,1329 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Modules &mdash; Pynta January 25, 2023 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Pynta
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Modules</a><ul>
+<li><a class="reference internal" href="#module-pynta.calculator">pynta.calculator module</a></li>
+<li><a class="reference internal" href="#module-pynta.main">pynta.main module</a></li>
+<li><a class="reference internal" href="#module-pynta.mol">pynta.mol module</a></li>
+<li><a class="reference internal" href="#module-pynta.tasks">pynta.tasks module</a></li>
+<li><a class="reference internal" href="#module-pynta.utils">pynta.utils module</a></li>
+<li><a class="reference internal" href="#module-pynta.transitionstate">pynta.transitionstate module</a></li>
+<li><a class="reference internal" href="#module-pynta">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Pynta</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Modules</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/source/pynta.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="modules">
+<h1>Modules<a class="headerlink" href="#modules" title="Permalink to this heading">¶</a></h1>
+<section id="module-pynta.calculator">
+<span id="pynta-calculator-module"></span><h2>pynta.calculator module<a class="headerlink" href="#module-pynta.calculator" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pynta.calculator.HarmonicallyForcedXTB">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynta.calculator.</span></span><span class="sig-name descname"><span class="pre">HarmonicallyForcedXTB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Optional</span><span class="p"><span class="pre">[</span></span><span class="pre">Atoms</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/calculator.html#HarmonicallyForcedXTB"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.calculator.HarmonicallyForcedXTB" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">XTB</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pynta.calculator.HarmonicallyForcedXTB.calculate">
+<span class="sig-name descname"><span class="pre">calculate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_changes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">['positions',</span> <span class="pre">'numbers',</span> <span class="pre">'cell',</span> <span class="pre">'pbc',</span> <span class="pre">'initial_charges',</span> <span class="pre">'initial_magmoms']</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/calculator.html#HarmonicallyForcedXTB.calculate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.calculator.HarmonicallyForcedXTB.calculate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform actual calculation with by calling the xtb API</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynta.calculator.HarmonicallyForcedXTB.get_energy_forces">
+<span class="sig-name descname"><span class="pre">get_energy_forces</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/calculator.html#HarmonicallyForcedXTB.get_energy_forces"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.calculator.HarmonicallyForcedXTB.get_energy_forces" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.calculator.add_sella_constraint">
+<span class="sig-prename descclassname"><span class="pre">pynta.calculator.</span></span><span class="sig-name descname"><span class="pre">add_sella_constraint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cons</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/calculator.html#add_sella_constraint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.calculator.add_sella_constraint" title="Permalink to this definition">¶</a></dt>
+<dd><p>construct a constraint from a dictionary that is the input to the constraint
+constructor plus an additional “type” key that indices the name of the constraint
+in this case for Sella the full Constraints object cons must be included in the inputs
+adds the constraint to Constraints and returns None</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.calculator.get_energy_atom_bond">
+<span class="sig-prename descclassname"><span class="pre">pynta.calculator.</span></span><span class="sig-name descname"><span class="pre">get_energy_atom_bond</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ind1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ind2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deq</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/calculator.html#get_energy_atom_bond"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.calculator.get_energy_atom_bond" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.calculator.get_energy_forces_atom_bond">
+<span class="sig-prename descclassname"><span class="pre">pynta.calculator.</span></span><span class="sig-name descname"><span class="pre">get_energy_forces_atom_bond</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ind1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ind2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deq</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/calculator.html#get_energy_forces_atom_bond"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.calculator.get_energy_forces_atom_bond" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.calculator.get_energy_forces_site_bond">
+<span class="sig-prename descclassname"><span class="pre">pynta.calculator.</span></span><span class="sig-name descname"><span class="pre">get_energy_forces_site_bond</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ind</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">site_pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deq</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/calculator.html#get_energy_forces_site_bond"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.calculator.get_energy_forces_site_bond" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.calculator.get_energy_site_bond">
+<span class="sig-prename descclassname"><span class="pre">pynta.calculator.</span></span><span class="sig-name descname"><span class="pre">get_energy_site_bond</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ind</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">site_pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deq</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/calculator.html#get_energy_site_bond"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.calculator.get_energy_site_bond" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.calculator.get_forces_atom_bond">
+<span class="sig-prename descclassname"><span class="pre">pynta.calculator.</span></span><span class="sig-name descname"><span class="pre">get_forces_atom_bond</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ind1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ind2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deq</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/calculator.html#get_forces_atom_bond"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.calculator.get_forces_atom_bond" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.calculator.get_forces_site_bond">
+<span class="sig-prename descclassname"><span class="pre">pynta.calculator.</span></span><span class="sig-name descname"><span class="pre">get_forces_site_bond</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ind</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">site_pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deq</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/calculator.html#get_forces_site_bond"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.calculator.get_forces_site_bond" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.calculator.get_lattice_parameter">
+<span class="sig-prename descclassname"><span class="pre">pynta.calculator.</span></span><span class="sig-name descname"><span class="pre">get_lattice_parameter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">surface_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">software</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">software_kwargs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">da</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">options</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'xatol':</span> <span class="pre">0.0001}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/calculator.html#get_lattice_parameter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.calculator.get_lattice_parameter" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.calculator.run_harmonically_forced_xtb">
+<span class="sig-prename descclassname"><span class="pre">pynta.calculator.</span></span><span class="sig-name descname"><span class="pre">run_harmonically_forced_xtb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_bond_potentials</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">site_bond_potentials</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nslab</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'GFN1-xTB'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/calculator.html#run_harmonically_forced_xtb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.calculator.run_harmonically_forced_xtb" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optimize TS guess using xTB + harmonic forcing terms determined by atom_bond_potentials and site_bond_potentials</p>
+</dd></dl>
+
+</section>
+<section id="module-pynta.main">
+<span id="pynta-main-module"></span><h2>pynta.main module<a class="headerlink" href="#module-pynta.main" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pynta.main.Pynta">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynta.main.</span></span><span class="sig-name descname"><span class="pre">Pynta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rxns_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">surface_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">launchpad_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fworker_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vacuum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repeats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[(1,</span> <span class="pre">1,</span> <span class="pre">1),</span> <span class="pre">(3,</span> <span class="pre">3,</span> <span class="pre">4)]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slab_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">software</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Espresso'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">socket</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queue</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">njobs_queue</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">software_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'conv_thr':</span> <span class="pre">1e-06,</span> <span class="pre">'degauss':</span> <span class="pre">0.01,</span> <span class="pre">'ecutwfc':</span> <span class="pre">40,</span> <span class="pre">'kpts':</span> <span class="pre">(3,</span> <span class="pre">3,</span> <span class="pre">1),</span> <span class="pre">'mixing_mode':</span> <span class="pre">'local-TF',</span> <span class="pre">'nosym':</span> <span class="pre">True,</span> <span class="pre">'occupations':</span> <span class="pre">'smearing',</span> <span class="pre">'pseudopotentials':</span> <span class="pre">{'C':</span> <span class="pre">'C.pbe-n-kjpaw_psl.1.0.0.UPF',</span> <span class="pre">'Cu':</span> <span class="pre">'Cu.pbe-spn-kjpaw_psl.1.0.0.UPF',</span> <span class="pre">'H':</span> <span class="pre">'H.pbe-kjpaw_psl.1.0.0.UPF',</span> <span class="pre">'N':</span> <span class="pre">'N.pbe-n-kjpaw_psl.1.0.0.UPF',</span> <span class="pre">'O':</span> <span class="pre">'O.pbe-n-kjpaw_psl.1.0.0.UPF'},</span> <span class="pre">'smearing':</span> <span class="pre">'marzari-vanderbilt',</span> <span class="pre">'tprnfor':</span> <span class="pre">True}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">software_kwargs_gas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TS_opt_software_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lattice_opt_software_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'degauss':</span> <span class="pre">0.02,</span> <span class="pre">'ecutwfc':</span> <span class="pre">70,</span> <span class="pre">'kpts':</span> <span class="pre">(25,</span> <span class="pre">25,</span> <span class="pre">25),</span> <span class="pre">'mixing_mode':</span> <span class="pre">'plain'}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reset_launchpad</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queue_adapter_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_num_hfsp_opts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Eharmtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Eharmfiltertol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">30.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ntsmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/main.html#Pynta"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.main.Pynta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pynta.main.Pynta.analyze_slab">
+<span class="sig-name descname"><span class="pre">analyze_slab</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/main.html#Pynta.analyze_slab"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.main.Pynta.analyze_slab" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynta.main.Pynta.execute">
+<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">generate_initial_ad_guesses</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calculate_adsorbates</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">calculate_transition_states</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">launch</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/main.html#Pynta.execute"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.main.Pynta.execute" title="Permalink to this definition">¶</a></dt>
+<dd><p>generate and launch a Pynta Fireworks Workflow
+if generate_initial_ad_guesses is true generates initial guesses, otherwise assumes they are already there
+if calculate_adsorbates is true generates firework jobs for adsorbates, otherwise assumes they are not needed
+if calculate_transition_states is true generates fireworks jobs for transition states, otherwise assumes they are not needed
+if launch is true launches the fireworks workflow in infinite mode…this generates a process that will continue to spawn jobs
+if launch is false the Fireworks workflow is added to the launchpad, where it can be launched separately using fireworks commands</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynta.main.Pynta.execute_from_initial_ad_guesses">
+<span class="sig-name descname"><span class="pre">execute_from_initial_ad_guesses</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/main.html#Pynta.execute_from_initial_ad_guesses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.main.Pynta.execute_from_initial_ad_guesses" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynta.main.Pynta.generate_initial_adsorbate_guesses">
+<span class="sig-name descname"><span class="pre">generate_initial_adsorbate_guesses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">skip_structs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/main.html#Pynta.generate_initial_adsorbate_guesses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.main.Pynta.generate_initial_adsorbate_guesses" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates initial guess geometries for adsorbates and gas phase species
+Generates maps connecting the molecule objects with these adsorbates</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynta.main.Pynta.generate_mol_dict">
+<span class="sig-name descname"><span class="pre">generate_mol_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/main.html#Pynta.generate_mol_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.main.Pynta.generate_mol_dict" title="Permalink to this definition">¶</a></dt>
+<dd><p>generates all unique Molecule objects based on the reactions and generates a dictionary
+mapping smiles to each unique Molecule object
+also updates self.rxns_dict with addtional useful information for each reaction</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynta.main.Pynta.generate_slab">
+<span class="sig-name descname"><span class="pre">generate_slab</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/main.html#Pynta.generate_slab"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.main.Pynta.generate_slab" title="Permalink to this definition">¶</a></dt>
+<dd><p>generates and optimizes a small scale slab that can be scaled to a large slab as needed
+optimization occurs through fireworks and this process waits until the optimization is completed</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynta.main.Pynta.launch">
+<span class="sig-name descname"><span class="pre">launch</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/main.html#Pynta.launch"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.main.Pynta.launch" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call appropriate rapidfire function</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynta.main.Pynta.setup_adsorbates">
+<span class="sig-name descname"><span class="pre">setup_adsorbates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">initial_guess_finished</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/main.html#Pynta.setup_adsorbates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.main.Pynta.setup_adsorbates" title="Permalink to this definition">¶</a></dt>
+<dd><p>Attaches each adsorbate structure to the slab and sets up fireworks to
+first optimize each possible geometry and then run vibrational calculations on each unique final geometry</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynta.main.Pynta.setup_transition_states">
+<span class="sig-name descname"><span class="pre">setup_transition_states</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adsorbates_finished</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/main.html#Pynta.setup_transition_states"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.main.Pynta.setup_transition_states" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets up fireworks to generate and filter a set of TS estimates, optimize each unique TS estimate,
+and run vibrational and IRC calculations on the each unique final transition state
+Note the vibrational and IRC calculations are launched at the same time</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-pynta.mol">
+<span id="pynta-mol-module"></span><h2>pynta.mol module<a class="headerlink" href="#module-pynta.mol" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.mol.add_adsorbate_to_site">
+<span class="sig-prename descclassname"><span class="pre">pynta.mol.</span></span><span class="sig-name descname"><span class="pre">add_adsorbate_to_site</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adsorbate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">surf_ind</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">site</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orientation</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tilt_angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/mol.html#add_adsorbate_to_site"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.mol.add_adsorbate_to_site" title="Permalink to this definition">¶</a></dt>
+<dd><p>The base function for adding one adsorbate to a site.
+Site must include information of ‘normal’ and ‘position’.
+Useful for adding adsorbate to multiple sites or adding
+multidentate adsorbates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>atoms</strong> (<em>ase.Atoms object</em>) – Accept any ase.Atoms object. No need to be built-in.</p></li>
+<li><p><strong>adsorbate</strong> (<em>str</em><em> or </em><em>ase.Atom object</em><em> or </em><em>ase.Atoms object</em>) – The adsorbate species to be added onto the surface.</p></li>
+<li><p><strong>site</strong> (<em>dict</em>) – The site that the adsorbate should be added to.
+Must contain information of the position and the
+normal vector of the site.</p></li>
+<li><p><strong>height</strong> (<em>float</em><em>, </em><em>default None</em>) – The height of the added adsorbate from the surface.
+Use the default settings if not specified.</p></li>
+<li><p><strong>orientation</strong> (<em>list</em><em> or </em><em>numpy.array</em><em>, </em><em>default None</em>) – The vector that the multidentate adsorbate is aligned to.</p></li>
+<li><p><strong>tilt_angle</strong> (<em>float</em><em>, </em><em>default None</em>) – Tilt the adsorbate with an angle (in degrees) relative to
+the surface normal.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.mol.ads_size">
+<span class="sig-prename descclassname"><span class="pre">pynta.mol.</span></span><span class="sig-name descname"><span class="pre">ads_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/mol.html#ads_size"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.mol.ads_size" title="Permalink to this definition">¶</a></dt>
+<dd><p>get number of atoms in the adsorbate part of the Molecule</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.mol.generate_adsorbate_guesses">
+<span class="sig-prename descclassname"><span class="pre">pynta.mol.</span></span><span class="sig-name descname"><span class="pre">generate_adsorbate_guesses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ads</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slab</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repeats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mol_to_atoms_map</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">single_site_bond_params_lists</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">single_sites_lists</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">double_site_bond_params_lists</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">double_sites_lists</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Eharmtol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Eharmfiltertol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Ntsmin</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/mol.html#generate_adsorbate_guesses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.mol.generate_adsorbate_guesses" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.mol.generate_unique_site_additions">
+<span class="sig-prename descclassname"><span class="pre">pynta.mol.</span></span><span class="sig-name descname"><span class="pre">generate_unique_site_additions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nslab</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">site_bond_params_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sites_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/mol.html#generate_unique_site_additions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.mol.generate_unique_site_additions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.mol.get_adsorbate">
+<span class="sig-prename descclassname"><span class="pre">pynta.mol.</span></span><span class="sig-name descname"><span class="pre">get_adsorbate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/mol.html#get_adsorbate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.mol.get_adsorbate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.mol.get_adsorbate_dist_from_center">
+<span class="sig-prename descclassname"><span class="pre">pynta.mol.</span></span><span class="sig-name descname"><span class="pre">get_adsorbate_dist_from_center</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nslab</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/mol.html#get_adsorbate_dist_from_center"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.mol.get_adsorbate_dist_from_center" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.mol.get_ase_index">
+<span class="sig-prename descclassname"><span class="pre">pynta.mol.</span></span><span class="sig-name descname"><span class="pre">get_ase_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ind</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template_mol_map</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">molecule_to_gratom_maps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nslab</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ads_sizes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/mol.html#get_ase_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.mol.get_ase_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the index associated with the ase.Atoms object</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.mol.get_bond_lengths_sites">
+<span class="sig-prename descclassname"><span class="pre">pynta.mol.</span></span><span class="sig-name descname"><span class="pre">get_bond_lengths_sites</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ads</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_map</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">surf_atom_map</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nslab</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">facet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'fcc111'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Cu'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cas</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/mol.html#get_bond_lengths_sites"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.mol.get_bond_lengths_sites" title="Permalink to this definition">¶</a></dt>
+<dd><p>gets bond lengths and site information indexed to the Molecule object atoms
+bond lengths is a matrix with the distances between all atoms that share bonds
+site information is the atom index mapped to the site type</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.mol.get_broken_formed_bonds">
+<span class="sig-prename descclassname"><span class="pre">pynta.mol.</span></span><span class="sig-name descname"><span class="pre">get_broken_formed_bonds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reactant</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/mol.html#get_broken_formed_bonds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.mol.get_broken_formed_bonds" title="Permalink to this definition">¶</a></dt>
+<dd><p>compares the reactant and product structures assuming bonds only form and break between labeled atoms
+returns frozensets of pairs of labels associated with atoms whose bond breaks or is formed during the reaction</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.mol.get_conformer">
+<span class="sig-prename descclassname"><span class="pre">pynta.mol.</span></span><span class="sig-name descname"><span class="pre">get_conformer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">desorbed</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/mol.html#get_conformer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.mol.get_conformer" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.mol.get_desorbed_with_map">
+<span class="sig-prename descclassname"><span class="pre">pynta.mol.</span></span><span class="sig-name descname"><span class="pre">get_desorbed_with_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/mol.html#get_desorbed_with_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.mol.get_desorbed_with_map" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.mol.get_edges">
+<span class="sig-prename descclassname"><span class="pre">pynta.mol.</span></span><span class="sig-name descname"><span class="pre">get_edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">slab_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">find_surface</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/mol.html#get_edges"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.mol.get_edges" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get adsorption edges</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>find_surface</strong> (<em>bool</em>) – specify whether to include surface or not
+default = False</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>edges</strong> (<em>list[tuple]</em>) – adsobrtion edges</p></li>
+<li><p><strong>surface</strong> (<em>numpy.ndarray</em>) – an array with tags describing:
+top surface atoms (1)
+bottom surface (-1)
+and bulk atoms (0)
+Atoms with tags ‘1’ are considered as the possible binding spots</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.mol.get_labeled_bonds">
+<span class="sig-prename descclassname"><span class="pre">pynta.mol.</span></span><span class="sig-name descname"><span class="pre">get_labeled_bonds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/mol.html#get_labeled_bonds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.mol.get_labeled_bonds" title="Permalink to this definition">¶</a></dt>
+<dd><p>generate a list of all Bonds between labeled atoms in the Molecule object</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.mol.get_mol_index">
+<span class="sig-prename descclassname"><span class="pre">pynta.mol.</span></span><span class="sig-name descname"><span class="pre">get_mol_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ind</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template_mol_map</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/mol.html#get_mol_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.mol.get_mol_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>ind is the index in the template
+first index corresponds to the molecule object
+second index corresponds to the index in the molecule object</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.mol.get_name">
+<span class="sig-prename descclassname"><span class="pre">pynta.mol.</span></span><span class="sig-name descname"><span class="pre">get_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/mol.html#get_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.mol.get_name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.mol.get_nonintersectingkeys_maps">
+<span class="sig-prename descclassname"><span class="pre">pynta.mol.</span></span><span class="sig-name descname"><span class="pre">get_nonintersectingkeys_maps</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">maps</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/mol.html#get_nonintersectingkeys_maps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.mol.get_nonintersectingkeys_maps" title="Permalink to this definition">¶</a></dt>
+<dd><p>process the subgraph isomorphisms found to generate a list of valid maps</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.mol.get_site_bond_length">
+<span class="sig-prename descclassname"><span class="pre">pynta.mol.</span></span><span class="sig-name descname"><span class="pre">get_site_bond_length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sitetype</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atomtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/mol.html#get_site_bond_length"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.mol.get_site_bond_length" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.mol.get_template_mol_map">
+<span class="sig-prename descclassname"><span class="pre">pynta.mol.</span></span><span class="sig-name descname"><span class="pre">get_template_mol_map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">template</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mols</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/mol.html#get_template_mol_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.mol.get_template_mol_map" title="Permalink to this definition">¶</a></dt>
+<dd><p>template is the combined labeled Molecule object
+find dictionary mapping indices of the template to the molecule objects of interest
+output is a list with each item coresponding to a Molecule object in mols the dictionary
+maps indices of the template to indices of the corresponding mol object</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.mol.place_adsorbate">
+<span class="sig-prename descclassname"><span class="pre">pynta.mol.</span></span><span class="sig-name descname"><span class="pre">place_adsorbate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ads</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slab</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_surf_inds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sites</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metal</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/mol.html#place_adsorbate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.mol.place_adsorbate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-pynta.tasks">
+<span id="pynta-tasks-module"></span><h2>pynta.tasks module<a class="headerlink" href="#module-pynta.tasks" title="Permalink to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="pynta.tasks.CollectTask">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">CollectTask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#CollectTask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.CollectTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">FiretaskBase</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pynta.tasks.CollectTask.run_task">
+<span class="sig-name descname"><span class="pre">run_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fw_spec</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#CollectTask.run_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.CollectTask.run_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method gets called when the Firetask is run. It can take in a
+Firework spec, perform some task using that data, and then return an
+output in the form of a FWAction.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>fw_spec (dict): A Firework spec. This comes from the master spec.</dt><dd><p>In addition, this spec contains a special “_fw_env” key that
+contains the env settings of the FWorker calling this method.
+This provides for abstracting out certain commands or
+settings. For example, “foo” may be named “foo1” in resource
+1 and “foo2” in resource 2. The FWorker env can specify {
+“foo”: “foo1”}, which maps an abstract variable “foo” to the
+relevant “foo1” or “foo2”. You can then write a task that
+uses fw_spec[“_fw_env”][“foo”] that will work across all
+these multiple resources.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>(FWAction)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pynta.tasks.DoNothingTask">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">DoNothingTask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#DoNothingTask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.DoNothingTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">FiretaskBase</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pynta.tasks.DoNothingTask.run_task">
+<span class="sig-name descname"><span class="pre">run_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fw_spec</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#DoNothingTask.run_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.DoNothingTask.run_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method gets called when the Firetask is run. It can take in a
+Firework spec, perform some task using that data, and then return an
+output in the form of a FWAction.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>fw_spec (dict): A Firework spec. This comes from the master spec.</dt><dd><p>In addition, this spec contains a special “_fw_env” key that
+contains the env settings of the FWorker calling this method.
+This provides for abstracting out certain commands or
+settings. For example, “foo” may be named “foo1” in resource
+1 and “foo2” in resource 2. The FWorker env can specify {
+“foo”: “foo1”}, which maps an abstract variable “foo” to the
+relevant “foo1” or “foo2”. You can then write a task that
+uses fw_spec[“_fw_env”][“foo”] that will work across all
+these multiple resources.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>(FWAction)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pynta.tasks.EnergyTask">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">EnergyTask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#EnergyTask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.EnergyTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">FiretaskBase</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pynta.tasks.EnergyTask.run_task">
+<span class="sig-name descname"><span class="pre">run_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fw_spec</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#EnergyTask.run_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.EnergyTask.run_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method gets called when the Firetask is run. It can take in a
+Firework spec, perform some task using that data, and then return an
+output in the form of a FWAction.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>fw_spec (dict): A Firework spec. This comes from the master spec.</dt><dd><p>In addition, this spec contains a special “_fw_env” key that
+contains the env settings of the FWorker calling this method.
+This provides for abstracting out certain commands or
+settings. For example, “foo” may be named “foo1” in resource
+1 and “foo2” in resource 2. The FWorker env can specify {
+“foo”: “foo1”}, which maps an abstract variable “foo” to the
+relevant “foo1” or “foo2”. You can then write a task that
+uses fw_spec[“_fw_env”][“foo”] that will work across all
+these multiple resources.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>(FWAction)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.tasks.IRC_firework">
+<span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">IRC_firework</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xyz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spawn_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">software</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">socket</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">software_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opt_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parents</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forward</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#IRC_firework"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.IRC_firework" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularCollect">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">MolecularCollect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#MolecularCollect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.MolecularCollect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pynta.tasks.CollectTask" title="pynta.tasks.CollectTask"><code class="xref py py-class docutils literal notranslate"><span class="pre">CollectTask</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularCollect.required_params">
+<span class="sig-name descname"><span class="pre">required_params</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['xyzs',</span> <span class="pre">'check_symm',</span> <span class="pre">'fw_generators',</span> <span class="pre">'fw_generator_dicts',</span> <span class="pre">'out_names',</span> <span class="pre">'future_check_symms',</span> <span class="pre">'label']</span></em><a class="headerlink" href="#pynta.tasks.MolecularCollect.required_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularCollect.run_task">
+<span class="sig-name descname"><span class="pre">run_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fw_spec</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#MolecularCollect.run_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.MolecularCollect.run_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method gets called when the Firetask is run. It can take in a
+Firework spec, perform some task using that data, and then return an
+output in the form of a FWAction.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>fw_spec (dict): A Firework spec. This comes from the master spec.</dt><dd><p>In addition, this spec contains a special “_fw_env” key that
+contains the env settings of the FWorker calling this method.
+This provides for abstracting out certain commands or
+settings. For example, “foo” may be named “foo1” in resource
+1 and “foo2” in resource 2. The FWorker env can specify {
+“foo”: “foo1”}, which maps an abstract variable “foo” to the
+relevant “foo1” or “foo2”. You can then write a task that
+uses fw_spec[“_fw_env”][“foo”] that will work across all
+these multiple resources.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>(FWAction)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularEnergyTask">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">MolecularEnergyTask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#MolecularEnergyTask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.MolecularEnergyTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pynta.tasks.EnergyTask" title="pynta.tasks.EnergyTask"><code class="xref py py-class docutils literal notranslate"><span class="pre">EnergyTask</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularEnergyTask.optional_params">
+<span class="sig-name descname"><span class="pre">optional_params</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['software_kwargs',</span> <span class="pre">'energy_kwargs',</span> <span class="pre">'ignore_errors']</span></em><a class="headerlink" href="#pynta.tasks.MolecularEnergyTask.optional_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularEnergyTask.required_params">
+<span class="sig-name descname"><span class="pre">required_params</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['software',</span> <span class="pre">'label']</span></em><a class="headerlink" href="#pynta.tasks.MolecularEnergyTask.required_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularEnergyTask.run_task">
+<span class="sig-name descname"><span class="pre">run_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fw_spec</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#MolecularEnergyTask.run_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.MolecularEnergyTask.run_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method gets called when the Firetask is run. It can take in a
+Firework spec, perform some task using that data, and then return an
+output in the form of a FWAction.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>fw_spec (dict): A Firework spec. This comes from the master spec.</dt><dd><p>In addition, this spec contains a special “_fw_env” key that
+contains the env settings of the FWorker calling this method.
+This provides for abstracting out certain commands or
+settings. For example, “foo” may be named “foo1” in resource
+1 and “foo2” in resource 2. The FWorker env can specify {
+“foo”: “foo1”}, which maps an abstract variable “foo” to the
+relevant “foo1” or “foo2”. You can then write a task that
+uses fw_spec[“_fw_env”][“foo”] that will work across all
+these multiple resources.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>(FWAction)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularIRC">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">MolecularIRC</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#MolecularIRC"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.MolecularIRC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">FiretaskBase</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularIRC.optional_params">
+<span class="sig-name descname"><span class="pre">optional_params</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['software',</span> <span class="pre">'socket',</span> <span class="pre">'software_kwargs',</span> <span class="pre">'opt_kwargs',</span> <span class="pre">'run_kwargs',</span> <span class="pre">'constraints',</span> <span class="pre">'ignore_errors',</span> <span class="pre">'forward']</span></em><a class="headerlink" href="#pynta.tasks.MolecularIRC.optional_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularIRC.required_params">
+<span class="sig-name descname"><span class="pre">required_params</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['xyz',</span> <span class="pre">'label']</span></em><a class="headerlink" href="#pynta.tasks.MolecularIRC.required_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularIRC.run_task">
+<span class="sig-name descname"><span class="pre">run_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fw_spec</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#MolecularIRC.run_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.MolecularIRC.run_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method gets called when the Firetask is run. It can take in a
+Firework spec, perform some task using that data, and then return an
+output in the form of a FWAction.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>fw_spec (dict): A Firework spec. This comes from the master spec.</dt><dd><p>In addition, this spec contains a special “_fw_env” key that
+contains the env settings of the FWorker calling this method.
+This provides for abstracting out certain commands or
+settings. For example, “foo” may be named “foo1” in resource
+1 and “foo2” in resource 2. The FWorker env can specify {
+“foo”: “foo1”}, which maps an abstract variable “foo” to the
+relevant “foo1” or “foo2”. You can then write a task that
+uses fw_spec[“_fw_env”][“foo”] that will work across all
+these multiple resources.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>(FWAction)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularOptimizationFailTask">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">MolecularOptimizationFailTask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#MolecularOptimizationFailTask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.MolecularOptimizationFailTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pynta.tasks.OptimizationTask" title="pynta.tasks.OptimizationTask"><code class="xref py py-class docutils literal notranslate"><span class="pre">OptimizationTask</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularOptimizationFailTask.optional_params">
+<span class="sig-name descname"><span class="pre">optional_params</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['software_kwargs',</span> <span class="pre">'opt_method',</span> <span class="pre">'opt_kwargs',</span> <span class="pre">'run_kwargs']</span></em><a class="headerlink" href="#pynta.tasks.MolecularOptimizationFailTask.optional_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularOptimizationFailTask.required_params">
+<span class="sig-name descname"><span class="pre">required_params</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['software',</span> <span class="pre">'label']</span></em><a class="headerlink" href="#pynta.tasks.MolecularOptimizationFailTask.required_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularOptimizationFailTask.run_task">
+<span class="sig-name descname"><span class="pre">run_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fw_spec</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#MolecularOptimizationFailTask.run_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.MolecularOptimizationFailTask.run_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method gets called when the Firetask is run. It can take in a
+Firework spec, perform some task using that data, and then return an
+output in the form of a FWAction.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>fw_spec (dict): A Firework spec. This comes from the master spec.</dt><dd><p>In addition, this spec contains a special “_fw_env” key that
+contains the env settings of the FWorker calling this method.
+This provides for abstracting out certain commands or
+settings. For example, “foo” may be named “foo1” in resource
+1 and “foo2” in resource 2. The FWorker env can specify {
+“foo”: “foo1”}, which maps an abstract variable “foo” to the
+relevant “foo1” or “foo2”. You can then write a task that
+uses fw_spec[“_fw_env”][“foo”] that will work across all
+these multiple resources.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>(FWAction)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularOptimizationTask">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">MolecularOptimizationTask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#MolecularOptimizationTask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.MolecularOptimizationTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pynta.tasks.OptimizationTask" title="pynta.tasks.OptimizationTask"><code class="xref py py-class docutils literal notranslate"><span class="pre">OptimizationTask</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularOptimizationTask.optional_params">
+<span class="sig-name descname"><span class="pre">optional_params</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['software_kwargs',</span> <span class="pre">'opt_method',</span> <span class="pre">'opt_kwargs',</span> <span class="pre">'run_kwargs',</span> <span class="pre">'constraints',</span> <span class="pre">'sella',</span> <span class="pre">'order',</span> <span class="pre">'socket',</span> <span class="pre">'time_limit_hrs',</span> <span class="pre">'fmaxhard',</span> <span class="pre">'ignore_errors',</span> <span class="pre">'target_site_num',</span> <span class="pre">'metal',</span> <span class="pre">'facet']</span></em><a class="headerlink" href="#pynta.tasks.MolecularOptimizationTask.optional_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularOptimizationTask.required_params">
+<span class="sig-name descname"><span class="pre">required_params</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['software',</span> <span class="pre">'label']</span></em><a class="headerlink" href="#pynta.tasks.MolecularOptimizationTask.required_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularOptimizationTask.run_task">
+<span class="sig-name descname"><span class="pre">run_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fw_spec</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#MolecularOptimizationTask.run_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.MolecularOptimizationTask.run_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method gets called when the Firetask is run. It can take in a
+Firework spec, perform some task using that data, and then return an
+output in the form of a FWAction.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>fw_spec (dict): A Firework spec. This comes from the master spec.</dt><dd><p>In addition, this spec contains a special “_fw_env” key that
+contains the env settings of the FWorker calling this method.
+This provides for abstracting out certain commands or
+settings. For example, “foo” may be named “foo1” in resource
+1 and “foo2” in resource 2. The FWorker env can specify {
+“foo”: “foo1”}, which maps an abstract variable “foo” to the
+relevant “foo1” or “foo2”. You can then write a task that
+uses fw_spec[“_fw_env”][“foo”] that will work across all
+these multiple resources.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>(FWAction)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularTSEstimate">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">MolecularTSEstimate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#MolecularTSEstimate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.MolecularTSEstimate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">FiretaskBase</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularTSEstimate.optional_params">
+<span class="sig-name descname"><span class="pre">optional_params</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['out_path',</span> <span class="pre">'spawn_jobs',</span> <span class="pre">'nprocs']</span></em><a class="headerlink" href="#pynta.tasks.MolecularTSEstimate.optional_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularTSEstimate.required_params">
+<span class="sig-name descname"><span class="pre">required_params</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['rxn',</span> <span class="pre">'ts_path',</span> <span class="pre">'slab_path',</span> <span class="pre">'adsorbates_path',</span> <span class="pre">'rxns_file',</span> <span class="pre">'repeats',</span> <span class="pre">'path',</span> <span class="pre">'metal',</span> <span class="pre">'facet',</span> <span class="pre">'name_to_adjlist_dict',</span> <span class="pre">'gratom_to_molecule_atom_maps',</span> <span class="pre">'gratom_to_molecule_surface_atom_maps',</span> <span class="pre">'opt_obj_dict',</span> <span class="pre">'vib_obj_dict',</span> <span class="pre">'IRC_obj_dict',</span> <span class="pre">'nslab',</span> <span class="pre">'Eharmtol',</span> <span class="pre">'Eharmfiltertol',</span> <span class="pre">'Ntsmin',</span> <span class="pre">'max_num_hfsp_opts']</span></em><a class="headerlink" href="#pynta.tasks.MolecularTSEstimate.required_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularTSEstimate.run_task">
+<span class="sig-name descname"><span class="pre">run_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fw_spec</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#MolecularTSEstimate.run_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.MolecularTSEstimate.run_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method gets called when the Firetask is run. It can take in a
+Firework spec, perform some task using that data, and then return an
+output in the form of a FWAction.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>fw_spec (dict): A Firework spec. This comes from the master spec.</dt><dd><p>In addition, this spec contains a special “_fw_env” key that
+contains the env settings of the FWorker calling this method.
+This provides for abstracting out certain commands or
+settings. For example, “foo” may be named “foo1” in resource
+1 and “foo2” in resource 2. The FWorker env can specify {
+“foo”: “foo1”}, which maps an abstract variable “foo” to the
+relevant “foo1” or “foo2”. You can then write a task that
+uses fw_spec[“_fw_env”][“foo”] that will work across all
+these multiple resources.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>(FWAction)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularTSNudge">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">MolecularTSNudge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#MolecularTSNudge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.MolecularTSNudge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">FiretaskBase</span></code></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularTSNudge.optional_params">
+<span class="sig-name descname"><span class="pre">optional_params</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['forward_path',</span> <span class="pre">'reverse_path',</span> <span class="pre">'spawn_jobs',</span> <span class="pre">'software',</span> <span class="pre">'opt_method',</span> <span class="pre">'sella',</span> <span class="pre">'socket',</span> <span class="pre">'software_kwargs',</span> <span class="pre">'opt_kwargs',</span> <span class="pre">'run_kwargs',</span> <span class="pre">'constraints',</span> <span class="pre">'ignore_errors']</span></em><a class="headerlink" href="#pynta.tasks.MolecularTSNudge.optional_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularTSNudge.required_params">
+<span class="sig-name descname"><span class="pre">required_params</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['vib_traj',</span> <span class="pre">'label']</span></em><a class="headerlink" href="#pynta.tasks.MolecularTSNudge.required_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularTSNudge.run_task">
+<span class="sig-name descname"><span class="pre">run_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fw_spec</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#MolecularTSNudge.run_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.MolecularTSNudge.run_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method gets called when the Firetask is run. It can take in a
+Firework spec, perform some task using that data, and then return an
+output in the form of a FWAction.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>fw_spec (dict): A Firework spec. This comes from the master spec.</dt><dd><p>In addition, this spec contains a special “_fw_env” key that
+contains the env settings of the FWorker calling this method.
+This provides for abstracting out certain commands or
+settings. For example, “foo” may be named “foo1” in resource
+1 and “foo2” in resource 2. The FWorker env can specify {
+“foo”: “foo1”}, which maps an abstract variable “foo” to the
+relevant “foo1” or “foo2”. You can then write a task that
+uses fw_spec[“_fw_env”][“foo”] that will work across all
+these multiple resources.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>(FWAction)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularTSxTBOpt">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">MolecularTSxTBOpt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#MolecularTSxTBOpt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.MolecularTSxTBOpt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pynta.tasks.OptimizationTask" title="pynta.tasks.OptimizationTask"><code class="xref py py-class docutils literal notranslate"><span class="pre">OptimizationTask</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularTSxTBOpt.optional_params">
+<span class="sig-name descname"><span class="pre">optional_params</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['label',</span> <span class="pre">'ignore_errors']</span></em><a class="headerlink" href="#pynta.tasks.MolecularTSxTBOpt.optional_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularTSxTBOpt.required_params">
+<span class="sig-name descname"><span class="pre">required_params</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['xyz',</span> <span class="pre">'slab_path',</span> <span class="pre">'bonds',</span> <span class="pre">'repeats',</span> <span class="pre">'av_dists_tuple']</span></em><a class="headerlink" href="#pynta.tasks.MolecularTSxTBOpt.required_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularTSxTBOpt.run_task">
+<span class="sig-name descname"><span class="pre">run_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fw_spec</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#MolecularTSxTBOpt.run_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.MolecularTSxTBOpt.run_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method gets called when the Firetask is run. It can take in a
+Firework spec, perform some task using that data, and then return an
+output in the form of a FWAction.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>fw_spec (dict): A Firework spec. This comes from the master spec.</dt><dd><p>In addition, this spec contains a special “_fw_env” key that
+contains the env settings of the FWorker calling this method.
+This provides for abstracting out certain commands or
+settings. For example, “foo” may be named “foo1” in resource
+1 and “foo2” in resource 2. The FWorker env can specify {
+“foo”: “foo1”}, which maps an abstract variable “foo” to the
+relevant “foo1” or “foo2”. You can then write a task that
+uses fw_spec[“_fw_env”][“foo”] that will work across all
+these multiple resources.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>(FWAction)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularVibrationsTask">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">MolecularVibrationsTask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#MolecularVibrationsTask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.MolecularVibrationsTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pynta.tasks.VibrationTask" title="pynta.tasks.VibrationTask"><code class="xref py py-class docutils literal notranslate"><span class="pre">VibrationTask</span></code></a></p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularVibrationsTask.optional_params">
+<span class="sig-name descname"><span class="pre">optional_params</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['software_kwargs',</span> <span class="pre">'constraints',</span> <span class="pre">'ignore_errors',</span> <span class="pre">'socket']</span></em><a class="headerlink" href="#pynta.tasks.MolecularVibrationsTask.optional_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularVibrationsTask.required_params">
+<span class="sig-name descname"><span class="pre">required_params</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">['software',</span> <span class="pre">'label']</span></em><a class="headerlink" href="#pynta.tasks.MolecularVibrationsTask.required_params" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pynta.tasks.MolecularVibrationsTask.run_task">
+<span class="sig-name descname"><span class="pre">run_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fw_spec</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#MolecularVibrationsTask.run_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.MolecularVibrationsTask.run_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method gets called when the Firetask is run. It can take in a
+Firework spec, perform some task using that data, and then return an
+output in the form of a FWAction.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>fw_spec (dict): A Firework spec. This comes from the master spec.</dt><dd><p>In addition, this spec contains a special “_fw_env” key that
+contains the env settings of the FWorker calling this method.
+This provides for abstracting out certain commands or
+settings. For example, “foo” may be named “foo1” in resource
+1 and “foo2” in resource 2. The FWorker env can specify {
+“foo”: “foo1”}, which maps an abstract variable “foo” to the
+relevant “foo1” or “foo2”. You can then write a task that
+uses fw_spec[“_fw_env”][“foo”] that will work across all
+these multiple resources.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>(FWAction)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pynta.tasks.OptimizationTask">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">OptimizationTask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#OptimizationTask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.OptimizationTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">FiretaskBase</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pynta.tasks.OptimizationTask.run_task">
+<span class="sig-name descname"><span class="pre">run_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fw_spec</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#OptimizationTask.run_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.OptimizationTask.run_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method gets called when the Firetask is run. It can take in a
+Firework spec, perform some task using that data, and then return an
+output in the form of a FWAction.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>fw_spec (dict): A Firework spec. This comes from the master spec.</dt><dd><p>In addition, this spec contains a special “_fw_env” key that
+contains the env settings of the FWorker calling this method.
+This provides for abstracting out certain commands or
+settings. For example, “foo” may be named “foo1” in resource
+1 and “foo2” in resource 2. The FWorker env can specify {
+“foo”: “foo1”}, which maps an abstract variable “foo” to the
+relevant “foo1” or “foo2”. You can then write a task that
+uses fw_spec[“_fw_env”][“foo”] that will work across all
+these multiple resources.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>(FWAction)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="pynta.tasks.StructureError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">StructureError</span></span><a class="reference internal" href="../_modules/pynta/tasks.html#StructureError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.StructureError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.tasks.TSnudge_firework">
+<span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">TSnudge_firework</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xyz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forward_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reverse_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spawn_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">software</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opt_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sella</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">socket</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">software_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opt_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parents</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#TSnudge_firework"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.TSnudge_firework" title="Permalink to this definition">¶</a></dt>
+<dd><p>xyz is really the vibrational output data file
+out_path is a dud variable here</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.tasks.TSxTBOpt_firework">
+<span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">TSxTBOpt_firework</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xyz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slab_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bonds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">repeats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">av_dists_tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parents</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#TSxTBOpt_firework"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.TSxTBOpt_firework" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="pynta.tasks.TimeLimitError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">TimeLimitError</span></span><a class="reference internal" href="../_modules/pynta/tasks.html#TimeLimitError"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.TimeLimitError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="pynta.tasks.VibrationTask">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">VibrationTask</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#VibrationTask"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.VibrationTask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">FiretaskBase</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pynta.tasks.VibrationTask.run_task">
+<span class="sig-name descname"><span class="pre">run_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fw_spec</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#VibrationTask.run_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.VibrationTask.run_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>This method gets called when the Firetask is run. It can take in a
+Firework spec, perform some task using that data, and then return an
+output in the form of a FWAction.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>fw_spec (dict): A Firework spec. This comes from the master spec.</dt><dd><p>In addition, this spec contains a special “_fw_env” key that
+contains the env settings of the FWorker calling this method.
+This provides for abstracting out certain commands or
+settings. For example, “foo” may be named “foo1” in resource
+1 and “foo2” in resource 2. The FWorker env can specify {
+“foo”: “foo1”}, which maps an abstract variable “foo” to the
+relevant “foo1” or “foo2”. You can then write a task that
+uses fw_spec[“_fw_env”][“foo”] that will work across all
+these multiple resources.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><p>(FWAction)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.tasks.collect_firework">
+<span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">collect_firework</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xyzs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">check_symm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fw_generators</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fw_generator_dicts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">future_check_symms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parents</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#collect_firework"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.collect_firework" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.tasks.construct_constraint">
+<span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">construct_constraint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#construct_constraint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.construct_constraint" title="Permalink to this definition">¶</a></dt>
+<dd><p>construct a constrain from a dictionary that is the input to the constraint
+constructor plus an additional “type” key that indices the name of the constraint
+returns the constraint</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.tasks.debug_fizzled">
+<span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">debug_fizzled</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trace</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#debug_fizzled"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.debug_fizzled" title="Permalink to this definition">¶</a></dt>
+<dd><p>generate a new firework to replace the fizzled firework</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.tasks.energy_firework">
+<span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">energy_firework</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xyz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">software</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">software_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parents</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#energy_firework"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.energy_firework" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.tasks.get_completed_fws">
+<span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">get_completed_fws</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lpad</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#get_completed_fws"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.get_completed_fws" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.tasks.get_fizzled_fws">
+<span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">get_fizzled_fws</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lpad</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#get_fizzled_fws"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.get_fizzled_fws" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.tasks.get_fw_traceback_task">
+<span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">get_fw_traceback_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fizzfw</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#get_fw_traceback_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.get_fw_traceback_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the traceback and task errored on for the fizzled firework</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.tasks.get_max_site_dist">
+<span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">get_max_site_dist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">site_bond_potential</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#get_max_site_dist"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.get_max_site_dist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.tasks.get_task_index">
+<span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">get_task_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#get_task_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.get_task_index" title="Permalink to this definition">¶</a></dt>
+<dd><p>get the index of a task in the task list</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.tasks.index_site_bond_potential_lists_by_site_distances">
+<span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">index_site_bond_potential_lists_by_site_distances</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">site_bond_potential_lists</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#index_site_bond_potential_lists_by_site_distances"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.index_site_bond_potential_lists_by_site_distances" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.tasks.limit_time">
+<span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">limit_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#limit_time"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.limit_time" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.tasks.map_harmonically_forced_xtb">
+<span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">map_harmonically_forced_xtb</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#map_harmonically_forced_xtb"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.map_harmonically_forced_xtb" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.tasks.optimize_firework">
+<span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">optimize_firework</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xyz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">software</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opt_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sella</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">socket</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">software_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opt_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parents</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_limit_hrs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">inf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmaxhard</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_site_num</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">facet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">priority</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#optimize_firework"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.optimize_firework" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.tasks.reconstruct_firework">
+<span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">reconstruct_firework</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">old_task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">full</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#reconstruct_firework"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.reconstruct_firework" title="Permalink to this definition">¶</a></dt>
+<dd><p>reconstruct a firework replacing an old_task with new_task based on the task list
+full indicates whether all of the tasks should be included or just those starting
+from the replaced task</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.tasks.reconstruct_task">
+<span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">reconstruct_task</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">orig_task</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#reconstruct_task"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.reconstruct_task" title="Permalink to this definition">¶</a></dt>
+<dd><p>regenerate a task based on the task_dict</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.tasks.restart_opt_firework">
+<span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">restart_opt_firework</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#restart_opt_firework"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.restart_opt_firework" title="Permalink to this definition">¶</a></dt>
+<dd><p>generate a firework to restart an optimization firework from the trajectory
+file based on the optimization task and the full task list</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.tasks.restart_wf">
+<span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">restart_wf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lpad</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">queue</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#restart_wf"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.restart_wf" title="Permalink to this definition">¶</a></dt>
+<dd><p>lpad is a LaunchPad object
+queue is a boolean indicating if running in a queue or not</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.tasks.run_gfn1xtb_opt">
+<span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">run_gfn1xtb_opt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#run_gfn1xtb_opt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.run_gfn1xtb_opt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.tasks.run_parallel_gfn1xtb_opt">
+<span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">run_parallel_gfn1xtb_opt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">inputs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nprocs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#run_parallel_gfn1xtb_opt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.run_parallel_gfn1xtb_opt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.tasks.vibrations_firework">
+<span class="sig-prename descclassname"><span class="pre">pynta.tasks.</span></span><span class="sig-name descname"><span class="pre">vibrations_firework</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xyz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">software</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">software_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parents</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">out_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraints</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">socket</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_errors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/tasks.html#vibrations_firework"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.tasks.vibrations_firework" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="module-pynta.utils">
+<span id="pynta-utils-module"></span><h2>pynta.utils module<a class="headerlink" href="#module-pynta.utils" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.utils.clean_pynta_path">
+<span class="sig-prename descclassname"><span class="pre">pynta.utils.</span></span><span class="sig-name descname"><span class="pre">clean_pynta_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_initial_guess</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/utils.html#clean_pynta_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.utils.clean_pynta_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.utils.filter_nonunique_TS_guess_indices">
+<span class="sig-prename descclassname"><span class="pre">pynta.utils.</span></span><span class="sig-name descname"><span class="pre">filter_nonunique_TS_guess_indices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Es</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/utils.html#filter_nonunique_TS_guess_indices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.utils.filter_nonunique_TS_guess_indices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check for the symmetry equivalent structures in the given files</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>geoms</strong> (<em>list of paths to .xyz</em><em> or </em><em>.traj files to compare</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.utils.get_fmax">
+<span class="sig-prename descclassname"><span class="pre">pynta.utils.</span></span><span class="sig-name descname"><span class="pre">get_fmax</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">at</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/utils.html#get_fmax"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.utils.get_fmax" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.utils.get_unique_sym">
+<span class="sig-prename descclassname"><span class="pre">pynta.utils.</span></span><span class="sig-name descname"><span class="pre">get_unique_sym</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geoms</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/utils.html#get_unique_sym"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.utils.get_unique_sym" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check for the symmetry equivalent structures in the given files</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>geoms</strong> (<em>list of paths to .xyz</em><em> or </em><em>.traj files to compare</em>) – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>idx_list</strong> – a list with prefixes of all symmetrically distinct sites</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list(str)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.utils.get_unique_sym_indices">
+<span class="sig-prename descclassname"><span class="pre">pynta.utils.</span></span><span class="sig-name descname"><span class="pre">get_unique_sym_indices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geoms</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/utils.html#get_unique_sym_indices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.utils.get_unique_sym_indices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check for the symmetry equivalent structures in the given files</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>geoms</strong> (<em>list of paths to .xyz</em><em> or </em><em>.traj files to compare</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.utils.get_unique_sym_struct_index_clusters">
+<span class="sig-prename descclassname"><span class="pre">pynta.utils.</span></span><span class="sig-name descname"><span class="pre">get_unique_sym_struct_index_clusters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geoms</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/utils.html#get_unique_sym_struct_index_clusters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.utils.get_unique_sym_struct_index_clusters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check for the symmetry equivalent structures in the given files</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>geoms</strong> (<em>list of Atoms objects to compare</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.utils.get_unique_sym_struct_indices">
+<span class="sig-prename descclassname"><span class="pre">pynta.utils.</span></span><span class="sig-name descname"><span class="pre">get_unique_sym_struct_indices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geoms</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/utils.html#get_unique_sym_struct_indices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.utils.get_unique_sym_struct_indices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check for the symmetry equivalent structures in the given files</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>geoms</strong> (<em>list of Atoms objects to compare</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.utils.get_unique_sym_structs">
+<span class="sig-prename descclassname"><span class="pre">pynta.utils.</span></span><span class="sig-name descname"><span class="pre">get_unique_sym_structs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geoms</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/utils.html#get_unique_sym_structs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.utils.get_unique_sym_structs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check for the symmetry equivalent structures in the given files</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>geoms</strong> (<em>list of Atoms objects to compare</em>) – </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.utils.name_to_ase_opt">
+<span class="sig-prename descclassname"><span class="pre">pynta.utils.</span></span><span class="sig-name descname"><span class="pre">name_to_ase_opt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opt_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/utils.html#name_to_ase_opt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.utils.name_to_ase_opt" title="Permalink to this definition">¶</a></dt>
+<dd><p>go from the optimizer name to the
+ASE optimizer</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.utils.name_to_ase_software">
+<span class="sig-prename descclassname"><span class="pre">pynta.utils.</span></span><span class="sig-name descname"><span class="pre">name_to_ase_software</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">software_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/utils.html#name_to_ase_software"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.utils.name_to_ase_software" title="Permalink to this definition">¶</a></dt>
+<dd><p>go from software_name to the associated
+ASE calculator constructor</p>
+</dd></dl>
+
+</section>
+<section id="module-pynta.transitionstate">
+<span id="pynta-transitionstate-module"></span><h2>pynta.transitionstate module<a class="headerlink" href="#module-pynta.transitionstate" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.transitionstate.determine_TS_construction">
+<span class="sig-prename descclassname"><span class="pre">pynta.transitionstate.</span></span><span class="sig-name descname"><span class="pre">determine_TS_construction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">reactant_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reactant_mols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">product_mols</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/transitionstate.html#determine_TS_construction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.transitionstate.determine_TS_construction" title="Permalink to this definition">¶</a></dt>
+<dd><p>determine the direction to generate the TS guess in and the order in which the
+reactants will be placed on the surface
+returns forward a boolean indicating if the reaction should be estimated in the forward (True)
+or reverse (False) direction and ordered_reacting_species which is a list of species in the order
+they should be placed on the surface</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.transitionstate.estimate_deq_k">
+<span class="sig-prename descclassname"><span class="pre">pynta.transitionstate.</span></span><span class="sig-name descname"><span class="pre">estimate_deq_k</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dwell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forward_template</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reverse_template</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template_reversed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broken_bonds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formed_bonds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sitetype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/transitionstate.html#estimate_deq_k"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.transitionstate.estimate_deq_k" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate the equilibrium bond length and force constant for broken/forming bonds
+0–(1–2)–3</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.transitionstate.estimate_deq_k_fixed_surf_bond">
+<span class="sig-prename descclassname"><span class="pre">pynta.transitionstate.</span></span><span class="sig-name descname"><span class="pre">estimate_deq_k_fixed_surf_bond</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dwell</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forward_template</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reverse_template</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template_reversed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broken_bonds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formed_bonds</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sitetype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/transitionstate.html#estimate_deq_k_fixed_surf_bond"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.transitionstate.estimate_deq_k_fixed_surf_bond" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimate the equilibrium bond length and force constant for surface bonds</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.transitionstate.generate_constraints_harmonic_parameters">
+<span class="sig-prename descclassname"><span class="pre">pynta.transitionstate.</span></span><span class="sig-name descname"><span class="pre">generate_constraints_harmonic_parameters</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tsstructs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adsorbates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slab</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forward_template</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reverse_template</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">template_reversed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ordered_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reverse_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mol_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gratom_to_molecule_atom_maps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gratom_to_molecule_surface_atom_maps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nslab</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">facet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cas</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/transitionstate.html#generate_constraints_harmonic_parameters"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.transitionstate.generate_constraints_harmonic_parameters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate constraints and harmonic parameters for the harmonically forced optimization</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.transitionstate.get_surface_forming_bond_pairings">
+<span class="sig-prename descclassname"><span class="pre">pynta.transitionstate.</span></span><span class="sig-name descname"><span class="pre">get_surface_forming_bond_pairings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tsstructs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_bond_potential_lists</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">site_bond_potential_lists</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">constraints_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">site_bond_dict_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cas</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/transitionstate.html#get_surface_forming_bond_pairings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.transitionstate.get_surface_forming_bond_pairings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Identify unique site targets for the harmonically forced optimization</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.transitionstate.get_unique_TS_structs">
+<span class="sig-prename descclassname"><span class="pre">pynta.transitionstate.</span></span><span class="sig-name descname"><span class="pre">get_unique_TS_structs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">adsorbates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">species_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nslab</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_surf_sites</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mol_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gratom_to_molecule_atom_maps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gratom_to_molecule_surface_atom_maps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">facet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gas_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/transitionstate.html#get_unique_TS_structs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.transitionstate.get_unique_TS_structs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate unique initial structures for TS guess generation</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.transitionstate.get_unique_optimized_adsorbates">
+<span class="sig-prename descclassname"><span class="pre">pynta.transitionstate.</span></span><span class="sig-name descname"><span class="pre">get_unique_optimized_adsorbates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rxn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adsorbates_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mol_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cas</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gratom_to_molecule_surface_atom_maps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nslab</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/transitionstate.html#get_unique_optimized_adsorbates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.transitionstate.get_unique_optimized_adsorbates" title="Permalink to this definition">¶</a></dt>
+<dd><p>load the adsorbates associated with the reaction and find the unique optimized
+adsorbate structures for each species
+returns a dictionary mapping each adsorbate name to a list of ase.Atoms objects</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pynta.transitionstate.sites_to_site_bond_potentials">
+<span class="sig-prename descclassname"><span class="pre">pynta.transitionstate.</span></span><span class="sig-name descname"><span class="pre">sites_to_site_bond_potentials</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sites</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">site_bond_dicts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atm_inds</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/pynta/transitionstate.html#sites_to_site_bond_potentials"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#pynta.transitionstate.sites_to_site_bond_potentials" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a list of possible site bond formation harmonic parameters for each
+atom that forms bonds with a site</p>
+</dd></dl>
+
+</section>
+<section id="module-pynta">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pynta" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Copyright 2021 National Technology &amp; Engineering Solutions of Sandia, LLC (NTESS). Under the terms of Contract DE-NA0003525 with NTESS, the U.S. Government retains certain rights in this software.
+      <span class="lastupdated">
+        Last updated on Wed, 25 Jan 2023 16:24:48.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

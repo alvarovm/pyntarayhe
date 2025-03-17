@@ -1,0 +1,723 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pynta.main &mdash; Pynta January 25, 2023 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Pynta
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Pynta</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>pynta.main</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for pynta.main</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">pynta.tasks</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">pynta.mol</span> <span class="kn">import</span> <span class="n">get_adsorbate</span><span class="p">,</span> <span class="n">generate_unique_site_additions</span><span class="p">,</span> <span class="n">generate_adsorbate_guesses</span><span class="p">,</span> <span class="n">get_name</span>
+<span class="kn">from</span> <span class="nn">molecule.molecule</span> <span class="kn">import</span> <span class="n">Molecule</span>
+<span class="kn">import</span> <span class="nn">ase.build</span>
+<span class="kn">from</span> <span class="nn">ase.io</span> <span class="kn">import</span> <span class="n">read</span><span class="p">,</span> <span class="n">write</span>
+<span class="kn">from</span> <span class="nn">ase</span> <span class="kn">import</span> <span class="n">Atoms</span><span class="p">,</span> <span class="n">Atom</span>
+<span class="kn">from</span> <span class="nn">acat.adsorption_sites</span> <span class="kn">import</span> <span class="n">SlabAdsorptionSites</span>
+<span class="kn">from</span> <span class="nn">acat.adsorbate_coverage</span> <span class="kn">import</span> <span class="n">SlabAdsorbateCoverage</span>
+<span class="kn">from</span> <span class="nn">acat.settings</span> <span class="kn">import</span> <span class="n">site_heights</span><span class="p">,</span> <span class="n">adsorbate_molecule</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">yaml</span>
+<span class="kn">from</span> <span class="nn">copy</span> <span class="kn">import</span> <span class="n">deepcopy</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">pynta.calculator</span> <span class="kn">import</span> <span class="n">get_lattice_parameter</span>
+<span class="kn">from</span> <span class="nn">fireworks</span> <span class="kn">import</span> <span class="n">LaunchPad</span><span class="p">,</span> <span class="n">Workflow</span>
+<span class="kn">from</span> <span class="nn">fireworks.queue.queue_launcher</span> <span class="kn">import</span> <span class="n">rapidfire</span> <span class="k">as</span> <span class="n">rapidfirequeue</span>
+<span class="kn">from</span> <span class="nn">fireworks.features.multi_launcher</span> <span class="kn">import</span> <span class="n">launch_multiprocess</span>
+<span class="kn">from</span> <span class="nn">fireworks.utilities.fw_serializers</span> <span class="kn">import</span> <span class="n">load_object_from_file</span>
+<span class="kn">from</span> <span class="nn">fireworks.core.rocket_launcher</span> <span class="kn">import</span> <span class="n">rapidfire</span>
+<span class="kn">from</span> <span class="nn">fireworks.core.fworker</span> <span class="kn">import</span> <span class="n">FWorker</span>
+<span class="kn">import</span> <span class="nn">fireworks.fw_config</span>
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<div class="viewcode-block" id="Pynta"><a class="viewcode-back" href="../../source/pynta.html#pynta.main.Pynta">[docs]</a><span class="k">class</span> <span class="nc">Pynta</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">path</span><span class="p">,</span><span class="n">rxns_file</span><span class="p">,</span><span class="n">surface_type</span><span class="p">,</span><span class="n">metal</span><span class="p">,</span><span class="n">label</span><span class="p">,</span><span class="n">launchpad_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">fworker_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">vacuum</span><span class="o">=</span><span class="mf">8.0</span><span class="p">,</span><span class="n">repeats</span><span class="o">=</span><span class="p">[(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)],</span><span class="n">slab_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">software</span><span class="o">=</span><span class="s2">&quot;Espresso&quot;</span><span class="p">,</span><span class="n">socket</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">queue</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">njobs_queue</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">a</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">software_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;kpts&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="s1">&#39;tprnfor&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s1">&#39;occupations&#39;</span><span class="p">:</span> <span class="s1">&#39;smearing&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;smearing&#39;</span><span class="p">:</span>  <span class="s1">&#39;marzari-vanderbilt&#39;</span><span class="p">,</span>
+                            <span class="s1">&#39;degauss&#39;</span><span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span> <span class="s1">&#39;ecutwfc&#39;</span><span class="p">:</span> <span class="mi">40</span><span class="p">,</span> <span class="s1">&#39;nosym&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+                            <span class="s1">&#39;conv_thr&#39;</span><span class="p">:</span> <span class="mf">1e-6</span><span class="p">,</span> <span class="s1">&#39;mixing_mode&#39;</span><span class="p">:</span> <span class="s1">&#39;local-TF&#39;</span><span class="p">,</span>
+                            <span class="s2">&quot;pseudopotentials&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Cu&quot;</span><span class="p">:</span> <span class="s1">&#39;Cu.pbe-spn-kjpaw_psl.1.0.0.UPF&#39;</span><span class="p">,</span><span class="s2">&quot;H&quot;</span><span class="p">:</span> <span class="s1">&#39;H.pbe-kjpaw_psl.1.0.0.UPF&#39;</span><span class="p">,</span><span class="s2">&quot;O&quot;</span><span class="p">:</span> <span class="s1">&#39;O.pbe-n-kjpaw_psl.1.0.0.UPF&#39;</span><span class="p">,</span><span class="s2">&quot;C&quot;</span><span class="p">:</span> <span class="s1">&#39;C.pbe-n-kjpaw_psl.1.0.0.UPF&#39;</span><span class="p">,</span><span class="s2">&quot;N&quot;</span><span class="p">:</span> <span class="s1">&#39;N.pbe-n-kjpaw_psl.1.0.0.UPF&#39;</span><span class="p">,</span>
+                            <span class="p">},</span> <span class="p">},</span>
+        <span class="n">software_kwargs_gas</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">TS_opt_software_kwargs</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">lattice_opt_software_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;kpts&#39;</span><span class="p">:</span> <span class="p">(</span><span class="mi">25</span><span class="p">,</span><span class="mi">25</span><span class="p">,</span><span class="mi">25</span><span class="p">),</span> <span class="s1">&#39;ecutwfc&#39;</span><span class="p">:</span> <span class="mi">70</span><span class="p">,</span> <span class="s1">&#39;degauss&#39;</span><span class="p">:</span><span class="mf">0.02</span><span class="p">,</span> <span class="s1">&#39;mixing_mode&#39;</span><span class="p">:</span> <span class="s1">&#39;plain&#39;</span><span class="p">},</span>
+        <span class="n">reset_launchpad</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">queue_adapter_path</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="n">num_jobs</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span><span class="n">max_num_hfsp_opts</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span><span class="c1">#max_num_hfsp_opts is mostly for fast testing</span>
+        <span class="n">Eharmtol</span><span class="o">=</span><span class="mf">3.0</span><span class="p">,</span><span class="n">Eharmfiltertol</span><span class="o">=</span><span class="mf">30.0</span><span class="p">,</span><span class="n">Ntsmin</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">surface_type</span> <span class="o">=</span> <span class="n">surface_type</span>
+        <span class="k">if</span> <span class="n">launchpad_path</span><span class="p">:</span>
+            <span class="n">launchpad</span> <span class="o">=</span> <span class="n">LaunchPad</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">launchpad_path</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">launchpad</span> <span class="o">=</span> <span class="n">LaunchPad</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">reset_launchpad</span><span class="p">:</span>
+            <span class="n">launchpad</span><span class="o">.</span><span class="n">reset</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">require_password</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">launchpad</span> <span class="o">=</span> <span class="n">launchpad</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">slab_path</span> <span class="o">=</span> <span class="n">slab_path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vacuum</span> <span class="o">=</span> <span class="n">vacuum</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">software</span> <span class="o">=</span> <span class="n">software</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">socket</span> <span class="o">=</span> <span class="n">socket</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">repeats</span> <span class="o">=</span> <span class="n">repeats</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">()</span> <span class="k">if</span> <span class="n">path</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">path</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">facet</span> <span class="o">=</span> <span class="n">metal</span> <span class="o">+</span> <span class="n">surface_type</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fws</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">metal</span> <span class="o">=</span> <span class="n">metal</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">adsorbate_fw_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">software_kwargs</span> <span class="o">=</span> <span class="n">software_kwargs</span>
+
+        <span class="k">if</span> <span class="n">software_kwargs_gas</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">software_kwargs_gas</span> <span class="o">=</span> <span class="n">software_kwargs_gas</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">software_kwargs_gas</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">software_kwargs</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">software_kwargs_gas</span><span class="p">[</span><span class="s2">&quot;kpts&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;gamma&#39;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">software_kwargs_gas</span><span class="p">[</span><span class="s2">&quot;smearing&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;gauss&#39;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">software_kwargs_gas</span><span class="p">[</span><span class="s2">&quot;degauss&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.005</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">software_kwargs_gas</span><span class="p">[</span><span class="s2">&quot;mixing_beta&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mf">0.2</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">software_kwargs_gas</span><span class="p">[</span><span class="s2">&quot;mixing_ndim&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">software_kwargs_TS</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">software_kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">TS_opt_software_kwargs</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">val</span> <span class="ow">in</span> <span class="n">TS_opt_software_kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">software_kwargs_TS</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">lattice_opt_software_kwargs</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="n">software_kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">lattice_opt_software_kwargs</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">val</span> <span class="ow">in</span> <span class="n">lattice_opt_software_kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">lattice_opt_software_kwargs</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">queue</span> <span class="o">=</span> <span class="n">queue</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fworker</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">qadapter</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">fworker_path</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fworker</span> <span class="o">=</span> <span class="n">FWorker</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="n">fworker_path</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fworker</span> <span class="o">=</span> <span class="n">FWorker</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">rxns_file</span> <span class="o">=</span> <span class="n">rxns_file</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rxns_file</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rxns_dict</span> <span class="o">=</span> <span class="n">yaml</span><span class="o">.</span><span class="n">safe_load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">slab</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">slab_path</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">slab_path</span> <span class="k">else</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">njobs_queue</span> <span class="o">=</span> <span class="n">njobs_queue</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_jobs</span> <span class="o">=</span> <span class="n">num_jobs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">label</span>
+        <span class="k">if</span> <span class="n">queue</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">qadapter</span> <span class="o">=</span> <span class="n">load_object_from_file</span><span class="p">(</span><span class="n">queue_adapter_path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">slab_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nslab</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">repeats</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">repeats</span><span class="p">[</span><span class="mi">1</span><span class="p">])))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">nslab</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">read</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">slab_path</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mol_dict</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Eharmtol</span> <span class="o">=</span> <span class="n">Eharmtol</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Eharmfiltertol</span> <span class="o">=</span> <span class="n">Eharmfiltertol</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Ntsmin</span> <span class="o">=</span> <span class="n">Ntsmin</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">max_num_hfsp_opts</span> <span class="o">=</span> <span class="n">max_num_hfsp_opts</span>
+
+<div class="viewcode-block" id="Pynta.generate_slab"><a class="viewcode-back" href="../../source/pynta.html#pynta.main.Pynta.generate_slab">[docs]</a>    <span class="k">def</span> <span class="nf">generate_slab</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        generates and optimizes a small scale slab that can be scaled to a large slab as needed</span>
+<span class="sd">        optimization occurs through fireworks and this process waits until the optimization is completed</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">slab_type</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">ase</span><span class="o">.</span><span class="n">build</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">surface_type</span><span class="p">)</span>
+        <span class="c1">#optimize the lattice constant</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="n">get_lattice_parameter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">metal</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">surface_type</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">software</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">lattice_opt_software_kwargs</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;computed lattice constant of: </span><span class="si">{}</span><span class="s2"> Angstroms&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="n">a</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">a</span>
+        <span class="c1">#construct slab with optimial lattice constant</span>
+        <span class="n">slab</span> <span class="o">=</span> <span class="n">slab_type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">metal</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">repeats</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">a</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">vacuum</span><span class="p">)</span>
+        <span class="n">slab</span><span class="o">.</span><span class="n">pbc</span> <span class="o">=</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="n">write</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span><span class="s2">&quot;slab_init.xyz&quot;</span><span class="p">),</span><span class="n">slab</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">slab_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span><span class="s2">&quot;slab.xyz&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">software</span> <span class="o">!=</span> <span class="s2">&quot;XTB&quot;</span><span class="p">:</span>
+            <span class="n">fwslab</span> <span class="o">=</span> <span class="n">optimize_firework</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span><span class="s2">&quot;slab_init.xyz&quot;</span><span class="p">),</span><span class="bp">self</span><span class="o">.</span><span class="n">software</span><span class="p">,</span><span class="s2">&quot;slab&quot;</span><span class="p">,</span>
+                <span class="n">opt_method</span><span class="o">=</span><span class="s2">&quot;BFGSLineSearch&quot;</span><span class="p">,</span><span class="n">socket</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">socket</span><span class="p">,</span><span class="n">software_kwargs</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">software_kwargs</span><span class="p">,</span>
+                <span class="n">run_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;fmax&quot;</span> <span class="p">:</span> <span class="mf">0.01</span><span class="p">},</span><span class="n">out_path</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span><span class="s2">&quot;slab.xyz&quot;</span><span class="p">),</span><span class="n">constraints</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;freeze half slab&quot;</span><span class="p">])</span>
+            <span class="n">wfslab</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">([</span><span class="n">fwslab</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="o">+</span><span class="s2">&quot;_slab&quot;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">launchpad</span><span class="o">.</span><span class="n">add_wf</span><span class="p">(</span><span class="n">wfslab</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">rapidfire</span><span class="p">()</span>
+            <span class="k">while</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">slab_path</span><span class="p">):</span> <span class="c1">#wait until slab optimizes, this is required anyway and makes the rest of the code simpler</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">slab</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">slab_path</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span> <span class="c1">#testing</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">slab</span> <span class="o">=</span> <span class="n">slab</span>
+            <span class="n">write</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">slab_path</span><span class="p">,</span><span class="n">slab</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Pynta.analyze_slab"><a class="viewcode-back" href="../../source/pynta.html#pynta.main.Pynta.analyze_slab">[docs]</a>    <span class="k">def</span> <span class="nf">analyze_slab</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">full_slab</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">slab</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">repeats</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">cas</span> <span class="o">=</span> <span class="n">SlabAdsorptionSites</span><span class="p">(</span><span class="n">full_slab</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">surface_type</span><span class="p">,</span><span class="n">allow_6fold</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">composition_effect</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                        <span class="n">label_sites</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                        <span class="n">surrogate_metal</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metal</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">cas</span> <span class="o">=</span> <span class="n">cas</span>
+
+        <span class="n">single_geoms</span><span class="p">,</span><span class="n">single_site_bond_params_lists</span><span class="p">,</span><span class="n">single_sites_lists</span> <span class="o">=</span> <span class="n">generate_unique_site_additions</span><span class="p">(</span><span class="n">full_slab</span><span class="p">,</span><span class="n">cas</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">full_slab</span><span class="p">),</span><span class="n">site_bond_params_list</span><span class="o">=</span><span class="p">[],</span><span class="n">sites_list</span><span class="o">=</span><span class="p">[])</span>
+
+        <span class="n">double_geoms_full</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">double_site_bond_params_lists_full</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">double_sites_lists_full</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">single_geoms</span><span class="p">)):</span>
+            <span class="n">double_geoms</span><span class="p">,</span><span class="n">double_site_bond_params_lists</span><span class="p">,</span><span class="n">double_sites_lists</span> <span class="o">=</span> <span class="n">generate_unique_site_additions</span><span class="p">(</span><span class="n">single_geoms</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                                                                <span class="n">cas</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">full_slab</span><span class="p">),</span><span class="n">single_site_bond_params_lists</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">single_sites_lists</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">double_geoms_full</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">double_geoms</span><span class="p">)</span>
+            <span class="n">double_site_bond_params_lists_full</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">double_site_bond_params_lists</span><span class="p">)</span>
+            <span class="n">double_sites_lists_full</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">double_sites_lists</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">single_site_bond_params_lists</span> <span class="o">=</span> <span class="n">single_site_bond_params_lists</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">single_sites_lists</span> <span class="o">=</span> <span class="n">single_sites_lists</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">double_site_bond_params_lists</span> <span class="o">=</span> <span class="n">double_site_bond_params_lists_full</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">double_sites_lists</span> <span class="o">=</span> <span class="n">double_sites_lists_full</span></div>
+
+<div class="viewcode-block" id="Pynta.generate_mol_dict"><a class="viewcode-back" href="../../source/pynta.html#pynta.main.Pynta.generate_mol_dict">[docs]</a>    <span class="k">def</span> <span class="nf">generate_mol_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        generates all unique Molecule objects based on the reactions and generates a dictionary</span>
+<span class="sd">        mapping smiles to each unique Molecule object</span>
+<span class="sd">        also updates self.rxns_dict with addtional useful information for each reaction</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">mols</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rxns_dict</span><span class="p">:</span>
+            <span class="n">r</span><span class="p">[</span><span class="s2">&quot;reactant_mols&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">r</span><span class="p">[</span><span class="s2">&quot;product_mols&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">react</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">()</span><span class="o">.</span><span class="n">from_adjacency_list</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">&quot;reactant&quot;</span><span class="p">])</span>
+            <span class="n">prod</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">()</span><span class="o">.</span><span class="n">from_adjacency_list</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">&quot;product&quot;</span><span class="p">])</span>
+            <span class="n">react</span><span class="o">.</span><span class="n">clear_labeled_atoms</span><span class="p">()</span>
+            <span class="n">prod</span><span class="o">.</span><span class="n">clear_labeled_atoms</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">mol</span> <span class="ow">in</span> <span class="n">react</span><span class="o">.</span><span class="n">split</span><span class="p">():</span>
+                <span class="n">mol</span><span class="o">.</span><span class="n">multiplicity</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">get_radical_count</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">mol</span><span class="o">.</span><span class="n">is_surface_site</span><span class="p">():</span>
+                    <span class="n">mols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+                    <span class="n">r</span><span class="p">[</span><span class="s2">&quot;reactant_mols&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">mol</span> <span class="ow">in</span> <span class="n">prod</span><span class="o">.</span><span class="n">split</span><span class="p">():</span>
+                <span class="n">mol</span><span class="o">.</span><span class="n">multiplicity</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">get_radical_count</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">mol</span><span class="o">.</span><span class="n">is_surface_site</span><span class="p">():</span>
+                    <span class="n">mols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+                    <span class="n">r</span><span class="p">[</span><span class="s2">&quot;product_mols&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+
+        <span class="n">unique_mols</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">mol</span> <span class="ow">in</span> <span class="n">mols</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">unique_mols</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">mol</span><span class="o">.</span><span class="n">is_isomorphic</span><span class="p">(</span><span class="n">m</span><span class="p">):</span>
+                    <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">unique_mols</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">mol</span> <span class="ow">in</span> <span class="n">unique_mols</span><span class="p">:</span>
+            <span class="n">mol</span><span class="o">.</span><span class="n">multiplicity</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">get_radical_count</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span>
+
+        <span class="n">mol_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">get_name</span><span class="p">(</span><span class="n">mol</span><span class="p">):</span><span class="n">mol</span> <span class="k">for</span> <span class="n">mol</span> <span class="ow">in</span> <span class="n">unique_mols</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mol_dict</span> <span class="o">=</span> <span class="n">mol_dict</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name_to_adjlist_dict</span> <span class="o">=</span> <span class="p">{</span><span class="n">sm</span><span class="p">:</span><span class="n">mol</span><span class="o">.</span><span class="n">to_adjacency_list</span><span class="p">()</span> <span class="k">for</span> <span class="n">sm</span><span class="p">,</span><span class="n">mol</span> <span class="ow">in</span> <span class="n">mol_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+
+
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rxns_dict</span><span class="p">:</span>
+            <span class="n">r</span><span class="p">[</span><span class="s2">&quot;reactant_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">r</span><span class="p">[</span><span class="s2">&quot;product_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">rmol</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">&quot;reactant_mols&quot;</span><span class="p">]):</span>
+                <span class="k">for</span> <span class="n">sm</span><span class="p">,</span><span class="n">mol</span> <span class="ow">in</span> <span class="n">mol_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="n">mol</span> <span class="ow">is</span> <span class="n">rmol</span> <span class="ow">or</span> <span class="n">mol</span><span class="o">.</span><span class="n">is_isomorphic</span><span class="p">(</span><span class="n">rmol</span><span class="p">,</span><span class="n">save_order</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+                        <span class="n">r</span><span class="p">[</span><span class="s2">&quot;reactant_mols&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">mol</span>
+                        <span class="n">r</span><span class="p">[</span><span class="s2">&quot;reactant_names&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sm</span><span class="p">)</span>
+                        <span class="k">break</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;rmol&quot;</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">rmol</span><span class="o">.</span><span class="n">to_adjacency_list</span><span class="p">())</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span>
+
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">rmol</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="s2">&quot;product_mols&quot;</span><span class="p">]):</span>
+                <span class="k">for</span> <span class="n">sm</span><span class="p">,</span><span class="n">mol</span> <span class="ow">in</span> <span class="n">mol_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="n">mol</span> <span class="ow">is</span> <span class="n">rmol</span> <span class="ow">or</span> <span class="n">mol</span><span class="o">.</span><span class="n">is_isomorphic</span><span class="p">(</span><span class="n">rmol</span><span class="p">,</span><span class="n">save_order</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+                        <span class="n">r</span><span class="p">[</span><span class="s2">&quot;product_mols&quot;</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">mol</span>
+                        <span class="n">r</span><span class="p">[</span><span class="s2">&quot;product_names&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sm</span><span class="p">)</span>
+                        <span class="k">break</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;rmol&quot;</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">rmol</span><span class="o">.</span><span class="n">to_adjacency_list</span><span class="p">())</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span>
+
+            <span class="n">r</span><span class="p">[</span><span class="s2">&quot;reactant_mols&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">to_adjacency_list</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;reactant_mols&quot;</span><span class="p">]]</span>
+            <span class="n">r</span><span class="p">[</span><span class="s2">&quot;product_mols&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">to_adjacency_list</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">r</span><span class="p">[</span><span class="s2">&quot;product_mols&quot;</span><span class="p">]]</span></div>
+
+<div class="viewcode-block" id="Pynta.generate_initial_adsorbate_guesses"><a class="viewcode-back" href="../../source/pynta.html#pynta.main.Pynta.generate_initial_adsorbate_guesses">[docs]</a>    <span class="k">def</span> <span class="nf">generate_initial_adsorbate_guesses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">skip_structs</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Generates initial guess geometries for adsorbates and gas phase species</span>
+<span class="sd">        Generates maps connecting the molecule objects with these adsorbates</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cas</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cas</span>
+        <span class="n">structures</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="n">gratom_to_molecule_atom_maps</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="n">gratom_to_molecule_surface_atom_maps</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">sm</span><span class="p">,</span><span class="n">mol</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">mol_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">sm</span><span class="p">)</span>
+            <span class="n">surf_sites</span> <span class="o">=</span> <span class="n">mol</span><span class="o">.</span><span class="n">get_surface_sites</span><span class="p">()</span>
+
+            <span class="n">ads</span><span class="p">,</span><span class="n">mol_to_atoms_map</span> <span class="o">=</span> <span class="n">get_adsorbate</span><span class="p">(</span><span class="n">mol</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">surf_sites</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">skip_structs</span><span class="p">:</span>
+                    <span class="n">ads</span><span class="o">.</span><span class="n">pbc</span> <span class="o">=</span> <span class="p">(</span><span class="kc">True</span><span class="p">,</span><span class="kc">True</span><span class="p">,</span><span class="kc">False</span><span class="p">)</span>
+                    <span class="n">ads</span><span class="o">.</span><span class="n">center</span><span class="p">(</span><span class="n">vacuum</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+                    <span class="n">structures</span><span class="p">[</span><span class="n">sm</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">ads</span><span class="p">]</span>
+                <span class="n">gratom_to_molecule_atom_maps</span><span class="p">[</span><span class="n">sm</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">val</span><span class="p">:</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">val</span> <span class="ow">in</span> <span class="n">mol_to_atoms_map</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+                <span class="n">gratom_to_molecule_surface_atom_maps</span><span class="p">[</span><span class="n">sm</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">skip_structs</span><span class="p">:</span>
+                    <span class="c1">#check if this adsorbate is already calculated</span>
+                    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span><span class="s2">&quot;Adsorbates&quot;</span><span class="p">,</span><span class="n">sm</span><span class="p">)):</span> <span class="c1">#assume initial guesses already generated</span>
+                        <span class="n">structures</span><span class="p">[</span><span class="n">sm</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">structs</span> <span class="o">=</span> <span class="n">generate_adsorbate_guesses</span><span class="p">(</span><span class="n">mol</span><span class="p">,</span><span class="n">ads</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">slab</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">repeats</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">cas</span><span class="p">,</span><span class="n">mol_to_atoms_map</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">metal</span><span class="p">,</span>
+                                           <span class="bp">self</span><span class="o">.</span><span class="n">single_site_bond_params_lists</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">single_sites_lists</span><span class="p">,</span>
+                                           <span class="bp">self</span><span class="o">.</span><span class="n">double_site_bond_params_lists</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">double_sites_lists</span><span class="p">,</span>
+                                           <span class="bp">self</span><span class="o">.</span><span class="n">Eharmtol</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">Eharmfiltertol</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">Ntsmin</span><span class="p">)</span>
+                        <span class="n">structures</span><span class="p">[</span><span class="n">sm</span><span class="p">]</span> <span class="o">=</span> <span class="n">structs</span>
+
+
+                <span class="n">gratom_to_molecule_atom_maps</span><span class="p">[</span><span class="n">sm</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">val</span><span class="p">:</span><span class="n">key</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span><span class="n">val</span> <span class="ow">in</span> <span class="n">mol_to_atoms_map</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+
+                <span class="n">adatoms</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">surf_index_atom_map</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">atm</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">mol</span><span class="o">.</span><span class="n">atoms</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">atm</span><span class="o">.</span><span class="n">is_bonded_to_surface</span><span class="p">():</span>
+                        <span class="n">surf_index_atom_map</span><span class="p">[</span><span class="n">mol_to_atoms_map</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">i</span>
+
+                <span class="n">gratom_to_molecule_surface_atom_maps</span><span class="p">[</span><span class="n">sm</span><span class="p">]</span> <span class="o">=</span> <span class="n">surf_index_atom_map</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">gratom_to_molecule_atom_maps</span> <span class="o">=</span> <span class="n">gratom_to_molecule_atom_maps</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">gratom_to_molecule_surface_atom_maps</span> <span class="o">=</span> <span class="n">gratom_to_molecule_surface_atom_maps</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">skip_structs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">adsorbate_structures</span> <span class="o">=</span> <span class="n">structures</span></div>
+
+<div class="viewcode-block" id="Pynta.setup_adsorbates"><a class="viewcode-back" href="../../source/pynta.html#pynta.main.Pynta.setup_adsorbates">[docs]</a>    <span class="k">def</span> <span class="nf">setup_adsorbates</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">initial_guess_finished</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Attaches each adsorbate structure to the slab and sets up fireworks to</span>
+<span class="sd">        first optimize each possible geometry and then run vibrational calculations on each unique final geometry</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">initial_guess_finished</span><span class="p">:</span>
+            <span class="n">adsorbate_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">sp_symbol</span><span class="p">,</span> <span class="n">adsorbate</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">adsorbate_structures</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">adsorbate_dict</span><span class="p">[</span><span class="n">sp_symbol</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">adsorbate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">structure</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">adsorbate</span><span class="p">):</span>
+                        <span class="n">adsorbate_dict</span><span class="p">[</span><span class="n">sp_symbol</span><span class="p">][</span><span class="n">prefix</span><span class="p">]</span> <span class="o">=</span> <span class="n">structure</span>
+                <span class="k">else</span><span class="p">:</span> <span class="c1">#read from Adsorbates directory</span>
+                    <span class="n">prefixes</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span><span class="s2">&quot;Adsorbates&quot;</span><span class="p">,</span><span class="n">sp_symbol</span><span class="p">))</span>
+                    <span class="k">for</span> <span class="n">prefix</span> <span class="ow">in</span> <span class="n">prefixes</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">prefix</span> <span class="o">==</span> <span class="s2">&quot;info.json&quot;</span><span class="p">:</span>
+                            <span class="k">continue</span>
+                        <span class="n">adsorbate_dict</span><span class="p">[</span><span class="n">sp_symbol</span><span class="p">][</span><span class="n">prefix</span><span class="p">]</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span><span class="s2">&quot;Adsorbates&quot;</span><span class="p">,</span><span class="n">sp_symbol</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">prefix</span><span class="p">),</span><span class="nb">str</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;_init.xyz&quot;</span><span class="p">))</span>
+
+            <span class="n">big_slab</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">slab</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">repeats</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">nsmall_slab</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">slab</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">adsname</span><span class="p">,</span><span class="n">adsorbate</span> <span class="ow">in</span> <span class="n">adsorbate_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="n">xyzs</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">optfws</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">optfws2</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">mol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mol_dict</span><span class="p">[</span><span class="n">adsname</span><span class="p">]</span>
+
+                <span class="c1">#check if this adsorbate is already calculated</span>
+                <span class="n">exists</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">for</span> <span class="n">prefix</span><span class="p">,</span><span class="n">structure</span> <span class="ow">in</span> <span class="n">adsorbate</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span><span class="s2">&quot;Adsorbates&quot;</span><span class="p">,</span><span class="n">adsname</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">prefix</span><span class="p">),</span><span class="nb">str</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;.xyz&quot;</span><span class="p">)):</span>
+                        <span class="n">exists</span> <span class="o">=</span> <span class="kc">True</span>
+
+                <span class="k">if</span> <span class="n">exists</span><span class="p">:</span> <span class="c1">#if this species already has a completed opt job in any prefix driectory skip it</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">adsorbate_fw_dict</span><span class="p">[</span><span class="n">adsname</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+                    <span class="k">continue</span>
+
+                <span class="k">for</span> <span class="n">prefix</span><span class="p">,</span><span class="n">structure</span> <span class="ow">in</span> <span class="n">adsorbate</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">mol</span><span class="o">.</span><span class="n">get_surface_sites</span><span class="p">())</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">big_slab_ads</span> <span class="o">=</span> <span class="n">structure</span>
+                        <span class="n">software_kwargs</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">software_kwargs</span><span class="p">)</span>
+                        <span class="n">target_site_num</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mol</span><span class="o">.</span><span class="n">get_surface_sites</span><span class="p">())</span>
+                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">software</span> <span class="o">!=</span> <span class="s2">&quot;XTB&quot;</span><span class="p">:</span>
+                            <span class="n">constraints</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;freeze half slab&quot;</span><span class="p">]</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">constraints</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;freeze all &quot;</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">metal</span><span class="p">]</span>
+                    <span class="k">else</span><span class="p">:</span> <span class="c1">#gas phase</span>
+                        <span class="n">big_slab_ads</span> <span class="o">=</span> <span class="n">structure</span>
+                        <span class="n">target_site_num</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1">#no slab so can&#39;t run site analysis</span>
+                        <span class="n">software_kwargs</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">software_kwargs_gas</span><span class="p">)</span>
+                        <span class="n">constraints</span> <span class="o">=</span> <span class="p">[]</span>
+                        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">big_slab_ads</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">software</span> <span class="o">==</span> <span class="s2">&quot;Espresso&quot;</span><span class="p">:</span> <span class="c1">#monoatomic species</span>
+                            <span class="n">software_kwargs</span><span class="p">[</span><span class="s2">&quot;command&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">software_kwargs</span><span class="p">[</span><span class="s2">&quot;command&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt; PREFIX.pwi &gt; PREFIX.pwo&quot;</span><span class="p">,</span><span class="s2">&quot;-ndiag 1 &lt; PREFIX.pwi &gt; PREFIX.pwo&quot;</span><span class="p">)</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span><span class="s2">&quot;Adsorbates&quot;</span><span class="p">,</span><span class="n">adsname</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">prefix</span><span class="p">)))</span>
+                    <span class="k">except</span><span class="p">:</span>
+                        <span class="k">pass</span>
+                    <span class="n">write</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span><span class="s2">&quot;Adsorbates&quot;</span><span class="p">,</span><span class="n">adsname</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">prefix</span><span class="p">),</span><span class="nb">str</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;_init.xyz&quot;</span><span class="p">),</span><span class="n">big_slab_ads</span><span class="p">)</span>
+                    <span class="n">sp_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span><span class="n">adsname</span><span class="p">,</span> <span class="s2">&quot;adjlist&quot;</span><span class="p">:</span><span class="n">mol</span><span class="o">.</span><span class="n">to_adjacency_list</span><span class="p">(),</span><span class="s2">&quot;atom_to_molecule_atom_map&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">gratom_to_molecule_atom_maps</span><span class="p">[</span><span class="n">adsname</span><span class="p">],</span>
+                            <span class="s2">&quot;gratom_to_molecule_surface_atom_map&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">gratom_to_molecule_surface_atom_maps</span><span class="p">[</span><span class="n">adsname</span><span class="p">],</span> <span class="s2">&quot;nslab&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">nslab</span><span class="p">}</span>
+                    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span><span class="s2">&quot;Adsorbates&quot;</span><span class="p">,</span><span class="n">adsname</span><span class="p">,</span><span class="s2">&quot;info.json&quot;</span><span class="p">),</span><span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">sp_dict</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
+                    <span class="n">xyz</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span><span class="s2">&quot;Adsorbates&quot;</span><span class="p">,</span><span class="n">adsname</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">prefix</span><span class="p">),</span><span class="nb">str</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;.xyz&quot;</span><span class="p">)</span>
+                    <span class="n">xyzs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xyz</span><span class="p">)</span>
+                    <span class="n">fwopt</span> <span class="o">=</span> <span class="n">optimize_firework</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span><span class="s2">&quot;Adsorbates&quot;</span><span class="p">,</span><span class="n">adsname</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">prefix</span><span class="p">),</span><span class="nb">str</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;_init.xyz&quot;</span><span class="p">),</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">software</span><span class="p">,</span><span class="s2">&quot;weakopt_&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">prefix</span><span class="p">),</span>
+                        <span class="n">opt_method</span><span class="o">=</span><span class="s2">&quot;MDMin&quot;</span><span class="p">,</span><span class="n">opt_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;dt&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">},</span><span class="n">socket</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">socket</span><span class="p">,</span><span class="n">software_kwargs</span><span class="o">=</span><span class="n">software_kwargs</span><span class="p">,</span>
+                        <span class="n">run_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;fmax&quot;</span> <span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s2">&quot;steps&quot;</span> <span class="p">:</span> <span class="mi">70</span><span class="p">},</span><span class="n">parents</span><span class="o">=</span><span class="p">[],</span><span class="n">constraints</span><span class="o">=</span><span class="n">constraints</span><span class="p">,</span>
+                        <span class="n">ignore_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">metal</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metal</span><span class="p">,</span> <span class="n">facet</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">surface_type</span><span class="p">,</span> <span class="n">target_site_num</span><span class="o">=</span><span class="n">target_site_num</span><span class="p">,</span> <span class="n">priority</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+                    <span class="n">fwopt2</span> <span class="o">=</span> <span class="n">optimize_firework</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span><span class="s2">&quot;Adsorbates&quot;</span><span class="p">,</span><span class="n">adsname</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">prefix</span><span class="p">),</span><span class="s2">&quot;weakopt_&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;.xyz&quot;</span><span class="p">),</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">software</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">prefix</span><span class="p">),</span>
+                        <span class="n">opt_method</span><span class="o">=</span><span class="s2">&quot;QuasiNewton&quot;</span><span class="p">,</span><span class="n">socket</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">socket</span><span class="p">,</span><span class="n">software_kwargs</span><span class="o">=</span><span class="n">software_kwargs</span><span class="p">,</span>
+                        <span class="n">run_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;fmax&quot;</span> <span class="p">:</span> <span class="mf">0.02</span><span class="p">,</span> <span class="s2">&quot;steps&quot;</span> <span class="p">:</span> <span class="mi">70</span><span class="p">},</span><span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">fwopt</span><span class="p">],</span><span class="n">constraints</span><span class="o">=</span><span class="n">constraints</span><span class="p">,</span>
+                        <span class="n">ignore_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">metal</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metal</span><span class="p">,</span> <span class="n">facet</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">surface_type</span><span class="p">,</span> <span class="n">target_site_num</span><span class="o">=</span><span class="n">target_site_num</span><span class="p">,</span> <span class="n">priority</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+                    <span class="n">optfws</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fwopt</span><span class="p">)</span>
+                    <span class="n">optfws</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fwopt2</span><span class="p">)</span>
+                    <span class="n">optfws2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fwopt2</span><span class="p">)</span>
+
+                <span class="n">vib_obj_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;software&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">software</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">adsname</span><span class="p">,</span> <span class="s2">&quot;software_kwargs&quot;</span><span class="p">:</span> <span class="n">software_kwargs</span><span class="p">,</span>
+                    <span class="s2">&quot;constraints&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;freeze all &quot;</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">metal</span><span class="p">]}</span>
+
+                <span class="n">cfw</span> <span class="o">=</span> <span class="n">collect_firework</span><span class="p">(</span><span class="n">xyzs</span><span class="p">,</span><span class="kc">True</span><span class="p">,[</span><span class="s2">&quot;vibrations_firework&quot;</span><span class="p">],[</span><span class="n">vib_obj_dict</span><span class="p">],[</span><span class="s2">&quot;vib.json&quot;</span><span class="p">],[],</span><span class="n">parents</span><span class="o">=</span><span class="n">optfws2</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="n">adsname</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">adsorbate_fw_dict</span><span class="p">[</span><span class="n">adsname</span><span class="p">]</span> <span class="o">=</span> <span class="n">optfws2</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">adsorbate_fw_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">fws</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">optfws</span><span class="o">+</span><span class="p">[</span><span class="n">cfw</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ads_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span><span class="s2">&quot;Adsorbates&quot;</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">ad</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">ads_path</span><span class="p">):</span>
+                <span class="n">xyzs</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">optfws</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">optfws2</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="k">if</span> <span class="n">ad</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">mol_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                    <span class="n">mol</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mol_dict</span><span class="p">[</span><span class="n">ad</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">continue</span> <span class="c1">#the species is not in the target reactions so skip it</span>
+                <span class="n">target_site_num</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mol</span><span class="o">.</span><span class="n">get_surface_sites</span><span class="p">())</span>
+                <span class="n">ad_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ads_path</span><span class="p">,</span><span class="n">ad</span><span class="p">)</span>
+                <span class="n">completed</span> <span class="o">=</span> <span class="kc">False</span>
+                <span class="k">for</span> <span class="n">prefix</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">ad_path</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ad_path</span><span class="p">,</span><span class="n">prefix</span><span class="p">,</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;.xyz&quot;</span><span class="p">)):</span>
+                        <span class="n">completed</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="k">if</span> <span class="n">completed</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">adsorbate_fw_dict</span><span class="p">[</span><span class="n">ad</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+                    <span class="k">continue</span>
+                <span class="k">for</span> <span class="n">prefix</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">ad_path</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">prefix</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;json&quot;</span><span class="p">:</span>
+                        <span class="k">continue</span>
+                    <span class="n">prefix_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">ad_path</span><span class="p">,</span><span class="n">prefix</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">target_site_num</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                        <span class="n">software_kwargs</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">software_kwargs_gas</span><span class="p">)</span>
+                        <span class="n">constraints</span> <span class="o">=</span> <span class="p">[]</span>
+                        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">mol</span><span class="o">.</span><span class="n">atoms</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">software</span> <span class="o">==</span> <span class="s2">&quot;Espresso&quot;</span><span class="p">:</span> <span class="c1">#monoatomic species</span>
+                            <span class="n">software_kwargs</span><span class="p">[</span><span class="s2">&quot;command&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">software_kwargs</span><span class="p">[</span><span class="s2">&quot;command&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;&lt; PREFIX.pwi &gt; PREFIX.pwo&quot;</span><span class="p">,</span><span class="s2">&quot;-ndiag 1 &lt; PREFIX.pwi &gt; PREFIX.pwo&quot;</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">software_kwargs</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">software_kwargs</span><span class="p">)</span>
+                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">software</span> <span class="o">!=</span> <span class="s2">&quot;XTB&quot;</span><span class="p">:</span>
+                            <span class="n">constraints</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;freeze half slab&quot;</span><span class="p">]</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">constraints</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;freeze all &quot;</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">metal</span><span class="p">]</span>
+                    <span class="n">xyz</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">prefix_path</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;.xyz&quot;</span><span class="p">)</span>
+                    <span class="n">init_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">prefix_path</span><span class="p">,</span><span class="n">prefix</span><span class="o">+</span><span class="s2">&quot;_init.xyz&quot;</span><span class="p">)</span>
+                    <span class="k">assert</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">init_path</span><span class="p">),</span> <span class="n">init_path</span>
+                    <span class="n">xyzs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">xyz</span><span class="p">)</span>
+                    <span class="n">fwopt</span> <span class="o">=</span> <span class="n">optimize_firework</span><span class="p">(</span><span class="n">init_path</span><span class="p">,</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">software</span><span class="p">,</span><span class="s2">&quot;weakopt_&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">prefix</span><span class="p">),</span>
+                        <span class="n">opt_method</span><span class="o">=</span><span class="s2">&quot;MDMin&quot;</span><span class="p">,</span><span class="n">opt_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;dt&#39;</span><span class="p">:</span> <span class="mf">0.05</span><span class="p">},</span><span class="n">socket</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">socket</span><span class="p">,</span><span class="n">software_kwargs</span><span class="o">=</span><span class="n">software_kwargs</span><span class="p">,</span>
+                        <span class="n">run_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;fmax&quot;</span> <span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s2">&quot;steps&quot;</span> <span class="p">:</span> <span class="mi">70</span><span class="p">},</span><span class="n">parents</span><span class="o">=</span><span class="p">[],</span><span class="n">constraints</span><span class="o">=</span><span class="n">constraints</span><span class="p">,</span>
+                        <span class="n">ignore_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">metal</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metal</span><span class="p">,</span> <span class="n">facet</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">surface_type</span><span class="p">,</span> <span class="n">target_site_num</span><span class="o">=</span><span class="n">target_site_num</span><span class="p">,</span> <span class="n">priority</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+                    <span class="n">fwopt2</span> <span class="o">=</span> <span class="n">optimize_firework</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span><span class="s2">&quot;Adsorbates&quot;</span><span class="p">,</span><span class="n">ad</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">prefix</span><span class="p">),</span><span class="s2">&quot;weakopt_&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">prefix</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;.xyz&quot;</span><span class="p">),</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">software</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">prefix</span><span class="p">),</span>
+                        <span class="n">opt_method</span><span class="o">=</span><span class="s2">&quot;QuasiNewton&quot;</span><span class="p">,</span><span class="n">socket</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">socket</span><span class="p">,</span><span class="n">software_kwargs</span><span class="o">=</span><span class="n">software_kwargs</span><span class="p">,</span>
+                        <span class="n">run_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;fmax&quot;</span> <span class="p">:</span> <span class="mf">0.02</span><span class="p">,</span> <span class="s2">&quot;steps&quot;</span> <span class="p">:</span> <span class="mi">70</span><span class="p">},</span><span class="n">parents</span><span class="o">=</span><span class="p">[</span><span class="n">fwopt</span><span class="p">],</span><span class="n">constraints</span><span class="o">=</span><span class="n">constraints</span><span class="p">,</span>
+                        <span class="n">ignore_errors</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">metal</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">metal</span><span class="p">,</span> <span class="n">facet</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">surface_type</span><span class="p">,</span> <span class="n">target_site_num</span><span class="o">=</span><span class="n">target_site_num</span><span class="p">,</span> <span class="n">priority</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+                    <span class="n">optfws</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fwopt</span><span class="p">)</span>
+                    <span class="n">optfws</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fwopt2</span><span class="p">)</span>
+                    <span class="n">optfws2</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fwopt2</span><span class="p">)</span>
+
+                <span class="n">vib_obj_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;software&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">software</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">ad</span><span class="p">,</span> <span class="s2">&quot;software_kwargs&quot;</span><span class="p">:</span> <span class="n">software_kwargs</span><span class="p">,</span>
+                    <span class="s2">&quot;constraints&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;freeze all &quot;</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">metal</span><span class="p">]}</span>
+
+                <span class="n">cfw</span> <span class="o">=</span> <span class="n">collect_firework</span><span class="p">(</span><span class="n">xyzs</span><span class="p">,</span><span class="kc">True</span><span class="p">,[</span><span class="s2">&quot;vibrations_firework&quot;</span><span class="p">],[</span><span class="n">vib_obj_dict</span><span class="p">],[</span><span class="s2">&quot;vib.json&quot;</span><span class="p">],[</span><span class="kc">True</span><span class="p">,</span><span class="kc">False</span><span class="p">],</span><span class="n">parents</span><span class="o">=</span><span class="n">optfws2</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="n">ad</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">adsorbate_fw_dict</span><span class="p">[</span><span class="n">ad</span><span class="p">]</span> <span class="o">=</span> <span class="n">optfws2</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">adsorbate_fw_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">fws</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">optfws</span><span class="o">+</span><span class="p">[</span><span class="n">cfw</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="Pynta.setup_transition_states"><a class="viewcode-back" href="../../source/pynta.html#pynta.main.Pynta.setup_transition_states">[docs]</a>    <span class="k">def</span> <span class="nf">setup_transition_states</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">adsorbates_finished</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Sets up fireworks to generate and filter a set of TS estimates, optimize each unique TS estimate,</span>
+<span class="sd">        and run vibrational and IRC calculations on the each unique final transition state</span>
+<span class="sd">        Note the vibrational and IRC calculations are launched at the same time</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">software</span> <span class="o">!=</span> <span class="s2">&quot;XTB&quot;</span><span class="p">:</span>
+            <span class="n">opt_obj_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;software&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">software</span><span class="p">,</span><span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;prefix&quot;</span><span class="p">,</span><span class="s2">&quot;socket&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">socket</span><span class="p">,</span><span class="s2">&quot;software_kwargs&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">software_kwargs_TS</span><span class="p">,</span>
+                <span class="s2">&quot;run_kwargs&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;fmax&quot;</span> <span class="p">:</span> <span class="mf">0.02</span><span class="p">,</span> <span class="s2">&quot;steps&quot;</span> <span class="p">:</span> <span class="mi">70</span><span class="p">},</span><span class="s2">&quot;constraints&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;freeze half slab&quot;</span><span class="p">],</span><span class="s2">&quot;sella&quot;</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span><span class="s2">&quot;order&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,}</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">opt_obj_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;software&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">software</span><span class="p">,</span><span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;prefix&quot;</span><span class="p">,</span><span class="s2">&quot;socket&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">socket</span><span class="p">,</span><span class="s2">&quot;software_kwargs&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">software_kwargs_TS</span><span class="p">,</span>
+                <span class="s2">&quot;run_kwargs&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;fmax&quot;</span> <span class="p">:</span> <span class="mf">0.02</span><span class="p">,</span> <span class="s2">&quot;steps&quot;</span> <span class="p">:</span> <span class="mi">70</span><span class="p">},</span><span class="s2">&quot;constraints&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;freeze all &quot;</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">metal</span><span class="p">],</span><span class="s2">&quot;sella&quot;</span><span class="p">:</span><span class="kc">True</span><span class="p">,</span><span class="s2">&quot;order&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,}</span>
+        <span class="n">vib_obj_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;software&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">software</span><span class="p">,</span><span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;prefix&quot;</span><span class="p">,</span><span class="s2">&quot;socket&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">socket</span><span class="p">,</span><span class="s2">&quot;software_kwargs&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">software_kwargs</span><span class="p">,</span>
+                <span class="s2">&quot;constraints&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;freeze all &quot;</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">metal</span><span class="p">]}</span>
+        <span class="n">IRC_obj_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;software&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">software</span><span class="p">,</span><span class="s2">&quot;label&quot;</span><span class="p">:</span><span class="s2">&quot;prefix&quot;</span><span class="p">,</span><span class="s2">&quot;socket&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">socket</span><span class="p">,</span><span class="s2">&quot;software_kwargs&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">software_kwargs</span><span class="p">,</span>
+                <span class="s2">&quot;run_kwargs&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;fmax&quot;</span> <span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s2">&quot;steps&quot;</span> <span class="p">:</span> <span class="mi">70</span><span class="p">},</span><span class="s2">&quot;constraints&quot;</span><span class="p">:[</span><span class="s2">&quot;freeze all &quot;</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">metal</span><span class="p">]}</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">rxn</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rxns_dict</span><span class="p">):</span>
+            <span class="n">ts_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span><span class="s2">&quot;TS&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">ts_path</span><span class="p">)</span>
+            <span class="n">ts_task</span> <span class="o">=</span> <span class="n">MolecularTSEstimate</span><span class="p">({</span><span class="s2">&quot;rxn&quot;</span><span class="p">:</span> <span class="n">rxn</span><span class="p">,</span><span class="s2">&quot;ts_path&quot;</span><span class="p">:</span> <span class="n">ts_path</span><span class="p">,</span><span class="s2">&quot;slab_path&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">slab_path</span><span class="p">,</span><span class="s2">&quot;adsorbates_path&quot;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span><span class="s2">&quot;Adsorbates&quot;</span><span class="p">),</span>
+                <span class="s2">&quot;rxns_file&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">rxns_file</span><span class="p">,</span><span class="s2">&quot;repeats&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">repeats</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="s2">&quot;path&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="p">,</span><span class="s2">&quot;metal&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">metal</span><span class="p">,</span><span class="s2">&quot;facet&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">surface_type</span><span class="p">,</span> <span class="s2">&quot;out_path&quot;</span><span class="p">:</span> <span class="n">ts_path</span><span class="p">,</span>
+                <span class="s2">&quot;spawn_jobs&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;opt_obj_dict&quot;</span><span class="p">:</span> <span class="n">opt_obj_dict</span><span class="p">,</span> <span class="s2">&quot;vib_obj_dict&quot;</span><span class="p">:</span> <span class="n">vib_obj_dict</span><span class="p">,</span>
+                    <span class="s2">&quot;IRC_obj_dict&quot;</span><span class="p">:</span> <span class="n">IRC_obj_dict</span><span class="p">,</span> <span class="s2">&quot;nprocs&quot;</span><span class="p">:</span> <span class="mi">48</span><span class="p">,</span> <span class="s2">&quot;name_to_adjlist_dict&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">name_to_adjlist_dict</span><span class="p">,</span>
+                    <span class="s2">&quot;gratom_to_molecule_atom_maps&quot;</span><span class="p">:{</span><span class="n">sm</span><span class="p">:</span> <span class="p">{</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">):</span><span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span> <span class="k">for</span> <span class="n">sm</span><span class="p">,</span><span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">gratom_to_molecule_atom_maps</span><span class="o">.</span><span class="n">items</span><span class="p">()},</span>
+                    <span class="s2">&quot;gratom_to_molecule_surface_atom_maps&quot;</span><span class="p">:{</span><span class="n">sm</span><span class="p">:</span> <span class="p">{</span><span class="nb">str</span><span class="p">(</span><span class="n">k</span><span class="p">):</span><span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span> <span class="k">for</span> <span class="n">sm</span><span class="p">,</span><span class="n">d</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">gratom_to_molecule_surface_atom_maps</span><span class="o">.</span><span class="n">items</span><span class="p">()},</span>
+                    <span class="s2">&quot;nslab&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">nslab</span><span class="p">,</span><span class="s2">&quot;Eharmtol&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">Eharmtol</span><span class="p">,</span><span class="s2">&quot;Eharmfiltertol&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">Eharmfiltertol</span><span class="p">,</span><span class="s2">&quot;Ntsmin&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">Ntsmin</span><span class="p">,</span>
+                    <span class="s2">&quot;max_num_hfsp_opts&quot;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">max_num_hfsp_opts</span><span class="p">})</span>
+            <span class="n">reactants</span> <span class="o">=</span> <span class="n">rxn</span><span class="p">[</span><span class="s2">&quot;reactant_names&quot;</span><span class="p">]</span>
+            <span class="n">products</span> <span class="o">=</span> <span class="n">rxn</span><span class="p">[</span><span class="s2">&quot;product_names&quot;</span><span class="p">]</span>
+            <span class="n">parents</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">adsorbates_finished</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="n">reactants</span><span class="o">+</span><span class="n">products</span><span class="p">:</span>
+                    <span class="n">parents</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">adsorbate_fw_dict</span><span class="p">[</span><span class="n">m</span><span class="p">])</span>
+            <span class="n">fw</span> <span class="o">=</span> <span class="n">Firework</span><span class="p">([</span><span class="n">ts_task</span><span class="p">],</span><span class="n">parents</span><span class="o">=</span><span class="n">parents</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;TS&quot;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;est&quot;</span><span class="p">,</span><span class="n">spec</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;_priority&quot;</span><span class="p">:</span> <span class="mi">10</span><span class="p">})</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">fws</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fw</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Pynta.launch"><a class="viewcode-back" href="../../source/pynta.html#pynta.main.Pynta.launch">[docs]</a>    <span class="k">def</span> <span class="nf">launch</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Call appropriate rapidfire function</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">queue</span><span class="p">:</span>
+            <span class="n">rapidfirequeue</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">launchpad</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">fworker</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">qadapter</span><span class="p">,</span><span class="n">njobs_queue</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">njobs_queue</span><span class="p">,</span><span class="n">nlaunches</span><span class="o">=</span><span class="s2">&quot;infinite&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">queue</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_jobs</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">rapidfire</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">launchpad</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">fworker</span><span class="p">,</span><span class="n">nlaunches</span><span class="o">=</span><span class="s2">&quot;infinite&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">launch_multiprocess</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">launchpad</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">fworker</span><span class="p">,</span><span class="s2">&quot;INFO&quot;</span><span class="p">,</span><span class="s2">&quot;infinite&quot;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">num_jobs</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Pynta.execute"><a class="viewcode-back" href="../../source/pynta.html#pynta.main.Pynta.execute">[docs]</a>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">generate_initial_ad_guesses</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">calculate_adsorbates</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                <span class="n">calculate_transition_states</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">launch</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        generate and launch a Pynta Fireworks Workflow</span>
+<span class="sd">        if generate_initial_ad_guesses is true generates initial guesses, otherwise assumes they are already there</span>
+<span class="sd">        if calculate_adsorbates is true generates firework jobs for adsorbates, otherwise assumes they are not needed</span>
+<span class="sd">        if calculate_transition_states is true generates fireworks jobs for transition states, otherwise assumes they are not needed</span>
+<span class="sd">        if launch is true launches the fireworks workflow in infinite mode...this generates a process that will continue to spawn jobs</span>
+<span class="sd">        if launch is false the Fireworks workflow is added to the launchpad, where it can be launched separately using fireworks commands</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">calculate_adsorbates</span><span class="p">:</span> <span class="c1">#default handling</span>
+            <span class="n">generate_initial_ad_guesses</span> <span class="o">=</span> <span class="kc">False</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">slab_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#handle slab</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">generate_slab</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">analyze_slab</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">generate_mol_dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">generate_initial_adsorbate_guesses</span><span class="p">(</span><span class="n">skip_structs</span><span class="o">=</span><span class="p">(</span><span class="ow">not</span> <span class="n">generate_initial_ad_guesses</span><span class="p">))</span>
+
+        <span class="c1">#adsorbate optimization</span>
+        <span class="k">if</span> <span class="n">calculate_adsorbates</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setup_adsorbates</span><span class="p">(</span><span class="n">initial_guess_finished</span><span class="o">=</span><span class="p">(</span><span class="ow">not</span> <span class="n">generate_initial_ad_guesses</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">calculate_transition_states</span><span class="p">:</span>
+            <span class="c1">#setup transition states</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">setup_transition_states</span><span class="p">(</span><span class="n">adsorbates_finished</span><span class="o">=</span><span class="p">(</span><span class="ow">not</span> <span class="n">calculate_adsorbates</span><span class="p">))</span>
+
+        <span class="n">wf</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fws</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">launchpad</span><span class="o">.</span><span class="n">add_wf</span><span class="p">(</span><span class="n">wf</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">launch</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="Pynta.execute_from_initial_ad_guesses"><a class="viewcode-back" href="../../source/pynta.html#pynta.main.Pynta.execute_from_initial_ad_guesses">[docs]</a>    <span class="k">def</span> <span class="nf">execute_from_initial_ad_guesses</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">slab_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="c1">#handle slab</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">generate_slab</span><span class="p">()</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">analyze_slab</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">generate_mol_dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">generate_initial_adsorbate_guesses</span><span class="p">(</span><span class="n">skip_structs</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1">#adsorbate optimization</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setup_adsorbates</span><span class="p">(</span><span class="n">initial_guess_finished</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+        <span class="c1">#setup transition states</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">setup_transition_states</span><span class="p">()</span>
+
+        <span class="n">wf</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fws</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">launchpad</span><span class="o">.</span><span class="n">add_wf</span><span class="p">(</span><span class="n">wf</span><span class="p">)</span>
+
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Copyright 2021 National Technology &amp; Engineering Solutions of Sandia, LLC (NTESS). Under the terms of Contract DE-NA0003525 with NTESS, the U.S. Government retains certain rights in this software.
+      <span class="lastupdated">
+        Last updated on Wed, 25 Jan 2023 16:24:48.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

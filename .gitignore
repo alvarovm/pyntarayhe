@@ -1,0 +1,27 @@
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+test/
+00_sent_DB/
+build/
+dist
+pynta_env
+# docs/
+# /docs/_build/latex*
+docsrc/_build/
+docsrc/_templates/
+# _build*
+# _static*
+# _templates*
+*workspace
+*project
+.vscode/
+*.egg-info/
+rmgcat_to_sella_package.tar.gz
+gitlistobjecbysizer.sh
+*pyc*
+pynta_env

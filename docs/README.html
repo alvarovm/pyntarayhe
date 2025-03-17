@@ -1,0 +1,450 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Pynta &mdash; Pynta January 25, 2023 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Pynta
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <!-- Local TOC -->
+              <div class="local-toc"><ul>
+<li><a class="reference internal" href="#">Pynta</a></li>
+<li><a class="reference internal" href="#installation">Installation</a><ul>
+<li><a class="reference internal" href="#notes-on-installation">Notes on Installation</a></li>
+<li><a class="reference internal" href="#install-git">Install git</a></li>
+<li><a class="reference internal" href="#install-anaconda">Install Anaconda</a></li>
+<li><a class="reference internal" href="#install-the-pynta-source-code">Install the Pynta source code:</a></li>
+<li><a class="reference internal" href="#create-a-conda-environment-for-pynta">Create a conda environment for Pynta</a></li>
+<li><a class="reference internal" href="#install-mongodb">Install MongoDB</a></li>
+<li><a class="reference internal" href="#setup-fireworks">Setup Fireworks</a></li>
+<li><a class="reference internal" href="#testing-pynta">Testing Pynta</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#running-pynta">Running Pynta</a><ul>
+<li><a class="reference internal" href="#example-reactions-yaml-file">Example <code class="docutils literal notranslate"><span class="pre">reactions.yaml</span></code> file</a></li>
+<li><a class="reference internal" href="#calling-pynta">Calling Pynta</a></li>
+</ul>
+</li>
+</ul>
+</div>
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Pynta</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Pynta</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/README.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="pynta">
+<h1>Pynta<a class="headerlink" href="#pynta" title="Permalink to this heading">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">pynta</span></code> is an automated workflow code to enable the calculation of thermochemistry
+and rate coefficients for reactions involving metallic surfaces.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">pynta</span></code> code is designed to automatically characterize chemical reactions
+relevant to heterogeneous catalysis. In particular, it spawns and processes a
+large number of ab initio quantum chemistry calculations to study gas-phase
+reactions on crystal facets. It is designed to run both on local clusters and
+on petascale and upcoming exascale machines.</p>
+<p>Pynta generates initial guesses for all gas phase species and adsorbates on the surface accounting
+for the symmetry of the surface. These guesses are then optimized and frequencies are calculated for
+the unique resulting geometries. Based on the provided reaction semi-atom mappings the
+adsorbate are placed on the surface and perturbed in many unique ways to generate
+transition state guesses, the best guesses are optimized and vibrational frequencies
+and IRCs are generated for unique successfully optimized transition states. This
+information can then be processed to generate thermochemistry and rate coefficients
+for the adsorbates and reactions that can be used in microkinetic models.</p>
+<p>Pynta is designed to work with the workflow code
+<a class="reference external" href="https://materialsproject.github.io/fireworks/">Fireworks</a> , which provides users
+with significant flexiblity in running Pynta.</p>
+<a class="reference internal image-reference" href="_images/workflow_idea.png"><img alt="_images/workflow_idea.png" class="align-center" src="_images/workflow_idea.png" style="width: 800px;" /></a>
+</section>
+<section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading">¶</a></h1>
+<section id="notes-on-installation">
+<h2>Notes on Installation<a class="headerlink" href="#notes-on-installation" title="Permalink to this heading">¶</a></h2>
+<p>Pynta supports only Linux and MacOS installation and currently only
+provides installation from source.</p>
+</section>
+<section id="install-git">
+<h2>Install git<a class="headerlink" href="#install-git" title="Permalink to this heading">¶</a></h2>
+<p>If you do not already have <cite>git</cite> it needs to be installed. On linux install
+with the appropriate package manager. On MacOS git should be installed through
+XCode Commandline Tools. This can be done by simply running <cite>git</cite> if it is
+not installed it will prompt you to install XCode Commandline Tools.</p>
+</section>
+<section id="install-anaconda">
+<h2>Install Anaconda<a class="headerlink" href="#install-anaconda" title="Permalink to this heading">¶</a></h2>
+<p>Download the appropriate <a class="reference external" href="https://www.anaconda.com/products/distribution#Downloads">Anaconda</a>
+or <a class="reference external" href="https://docs.conda.io/en/latest/miniconda.html">Miniconda</a> . For the command line/bash installers find the downloaded
+.sh file and run it with <cite>bash</cite> for example on linux this might look like:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>bash Anaconda3-2022.10-Linux-x86_64.sh
+</pre></div>
+</div>
+<p>Make sure to tell the installer to append Anaconda/Miniconda to PATH when asked.</p>
+<p>After installation you will need to exit and reopen your command line interface.
+After doing so we (optionally) recommend that you install <cite>mamba</cite> to speed up a later part of the install:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda install mamba
+</pre></div>
+</div>
+</section>
+<section id="install-the-pynta-source-code">
+<h2>Install the Pynta source code:<a class="headerlink" href="#install-the-pynta-source-code" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:zadorlab/pynta.git
+</pre></div>
+</div>
+</section>
+<section id="create-a-conda-environment-for-pynta">
+<h2>Create a conda environment for Pynta<a class="headerlink" href="#create-a-conda-environment-for-pynta" title="Permalink to this heading">¶</a></h2>
+<p>Enter the Pynta source directory with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> pynta
+</pre></div>
+</div>
+<p>and then create the conda environment. If you have installed <cite>mamba</cite> run</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mamba env create -f environment.yml
+</pre></div>
+</div>
+<p>else you can instead run the slower (but equally valid) commmand:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda env create -f environment.yml
+</pre></div>
+</div>
+<p>Once this is done activate the generated environment with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate pynta_env
+</pre></div>
+</div>
+</section>
+<section id="install-mongodb">
+<h2>Install MongoDB<a class="headerlink" href="#install-mongodb" title="Permalink to this heading">¶</a></h2>
+<p>The code for fireworks itself is installed within the created pynta_env, however Fireworks requires a MongoDB instance
+to manage workflows. There are many different ways to configure this and the best way depends heavily on where and how you are
+running Pynta. The community edition of MongoDB can be installed on a server or local computer you own, directions are available
+<a class="reference external" href="https://www.mongodb.com/docs/manual/administration/install-community/">here</a> . Additionally a MongoDB can be setup with a
+cloud provider. MongoDB provides a free option for their <a class="reference external" href="https://www.mongodb.com/atlas/database">MongoDB Atlas</a> that should
+be sufficient for typical use of Fireworks.</p>
+</section>
+<section id="setup-fireworks">
+<h2>Setup Fireworks<a class="headerlink" href="#setup-fireworks" title="Permalink to this heading">¶</a></h2>
+<p>Once the MongoDB is setup we can properly configure Fireworks. There are four configuration files that need written for
+Fireworks: my_launchpad.yaml,my_fworker.yaml, my_qadapter.yaml and FW_config.yaml. The first, my_launchpad.yaml needs
+setup for your particular MongoDB, an example is provided in the last section of this <a class="reference external" href="https://materialsproject.github.io/fireworks/installation.html">page</a> of the
+fireworks documentation. The second, my_fworker.yaml can typically just be:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my first fireworker</span><span class="w"></span>
+<span class="nt">category</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;&#39;</span><span class="w"></span>
+<span class="nt">query</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;{}&#39;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The third my_qadapter.yaml is not necessary if you don’t intend to have Fireworks submit jobs through a queue. A description of
+how this operates within Fireworks is available in their documentation <a class="reference external" href="https://materialsproject.github.io/fireworks/queue_tutorial.html">here</a> . Examples of my_qadapter.yaml are
+available <a class="reference external" href="https://github.com/materialsproject/fireworks/tree/main/fw_tutorials/queue">here</a> . Lastly the FW_config.yaml file should be
+configured according to directions in the Fireworks documentation <a class="reference external" href="https://materialsproject.github.io/fireworks/config_tutorial.html">here</a> .
+After configuring fireworks you should be able (after activating the pynta_env) run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lpad get_wflows
+</pre></div>
+</div>
+<p>Fireworks has a lot of handy features that enable you to track workflow progress and statistics in their gui and commands that enable you to manually launch and pause components of the workflow. Their documentation is available <a class="reference external" href="https://materialsproject.github.io/fireworks/index.html">here</a> .</p>
+</section>
+<section id="testing-pynta">
+<h2>Testing Pynta<a class="headerlink" href="#testing-pynta" title="Permalink to this heading">¶</a></h2>
+<p>Pynta has a set of unit and functional tests that can be run to ensure Pynta is properly installed
+and executes properly. In the Pynta directory all tests can be run with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make test-all
+</pre></div>
+</div>
+<p>only unittests can be run with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make test-unitests
+</pre></div>
+</div>
+<p>and only functional tests can be run with</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>make test-functional
+</pre></div>
+</div>
+<p>Warning one of the functional tests runs a small, but structurally complete Pynta workflow. Depending on the speed
+of the computer this can take a half hour to several hours to run.</p>
+</section>
+</section>
+<section id="running-pynta">
+<h1>Running Pynta<a class="headerlink" href="#running-pynta" title="Permalink to this heading">¶</a></h1>
+<p>In order to run Pynta we first need to describe the reactions we want Pynta to calculate. We do
+this within a reactions.yaml file. This file describes the reactants, products and the atom
+mapping between them in the RMG adjacency list <a class="reference external" href="https://reactionmechanismgenerator.github.io/RMG-Py/reference/molecule/adjlist.html">format</a> .
+All atoms that are part of bonds that break and form in the reaction need to be labeled (with the same label) in both reactants and products.
+The validity of adjacency lists can be checked using RMG’s tool <a class="reference external" href="https://rmg.mit.edu/molecule_search">here</a> .</p>
+<section id="example-reactions-yaml-file">
+<h2>Example <code class="docutils literal notranslate"><span class="pre">reactions.yaml</span></code> file<a class="headerlink" href="#example-reactions-yaml-file" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">index</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w"></span>
+<span class="w">  </span><span class="nt">reactant</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;multiplicity</span><span class="nv"> </span><span class="s">1</span><span class="w"></span>
+
+<span class="w">    </span><span class="s">1</span><span class="nv"> </span><span class="s">*3</span><span class="nv"> </span><span class="s">O</span><span class="nv"> </span><span class="s">u0</span><span class="nv"> </span><span class="s">p2</span><span class="nv"> </span><span class="s">c0</span><span class="nv"> </span><span class="s">{2,S}</span><span class="nv"> </span><span class="s">{5,S}</span><span class="w"></span>
+
+<span class="w">    </span><span class="s">2</span><span class="nv"> </span><span class="s">*2</span><span class="nv"> </span><span class="s">C</span><span class="nv"> </span><span class="s">u0</span><span class="nv"> </span><span class="s">p0</span><span class="nv"> </span><span class="s">c0</span><span class="nv"> </span><span class="s">{1,S}</span><span class="nv"> </span><span class="s">{3,S}</span><span class="nv"> </span><span class="s">{4,S}</span><span class="nv"> </span><span class="s">{7,S}</span><span class="w"></span>
+
+<span class="w">    </span><span class="s">3</span><span class="nv">    </span><span class="s">H</span><span class="nv"> </span><span class="s">u0</span><span class="nv"> </span><span class="s">p0</span><span class="nv"> </span><span class="s">c0</span><span class="nv"> </span><span class="s">{2,S}</span><span class="w"></span>
+
+<span class="w">    </span><span class="s">4</span><span class="nv">    </span><span class="s">H</span><span class="nv"> </span><span class="s">u0</span><span class="nv"> </span><span class="s">p0</span><span class="nv"> </span><span class="s">c0</span><span class="nv"> </span><span class="s">{2,S}</span><span class="w"></span>
+
+<span class="w">    </span><span class="s">5</span><span class="nv"> </span><span class="s">*4</span><span class="nv"> </span><span class="s">H</span><span class="nv"> </span><span class="s">u0</span><span class="nv"> </span><span class="s">p0</span><span class="nv"> </span><span class="s">c0</span><span class="nv"> </span><span class="s">{1,S}</span><span class="w"></span>
+
+<span class="w">    </span><span class="s">6</span><span class="nv"> </span><span class="s">*1</span><span class="nv"> </span><span class="s">X</span><span class="nv"> </span><span class="s">u0</span><span class="nv"> </span><span class="s">p0</span><span class="nv"> </span><span class="s">c0</span><span class="w"></span>
+
+<span class="w">    </span><span class="s">7</span><span class="nv"> </span><span class="s">*5</span><span class="nv"> </span><span class="s">X</span><span class="nv"> </span><span class="s">u0</span><span class="nv"> </span><span class="s">p0</span><span class="nv"> </span><span class="s">c0</span><span class="nv"> </span><span class="s">{2,S}</span><span class="w"></span>
+
+<span class="w">    </span><span class="s">&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">product</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;multiplicity</span><span class="nv"> </span><span class="s">1</span><span class="w"></span>
+
+<span class="w">    </span><span class="s">1</span><span class="nv"> </span><span class="s">*3</span><span class="nv"> </span><span class="s">O</span><span class="nv"> </span><span class="s">u0</span><span class="nv"> </span><span class="s">p2</span><span class="nv"> </span><span class="s">c0</span><span class="nv"> </span><span class="s">{2,S}</span><span class="nv"> </span><span class="s">{6,S}</span><span class="w"></span>
+
+<span class="w">    </span><span class="s">2</span><span class="nv"> </span><span class="s">*2</span><span class="nv"> </span><span class="s">C</span><span class="nv"> </span><span class="s">u0</span><span class="nv"> </span><span class="s">p0</span><span class="nv"> </span><span class="s">c0</span><span class="nv"> </span><span class="s">{1,S}</span><span class="nv"> </span><span class="s">{3,S}</span><span class="nv"> </span><span class="s">{4,S}</span><span class="nv"> </span><span class="s">{5,S}</span><span class="w"></span>
+
+<span class="w">    </span><span class="s">3</span><span class="nv">    </span><span class="s">H</span><span class="nv"> </span><span class="s">u0</span><span class="nv"> </span><span class="s">p0</span><span class="nv"> </span><span class="s">c0</span><span class="nv"> </span><span class="s">{2,S}</span><span class="w"></span>
+
+<span class="w">    </span><span class="s">4</span><span class="nv">    </span><span class="s">H</span><span class="nv"> </span><span class="s">u0</span><span class="nv"> </span><span class="s">p0</span><span class="nv"> </span><span class="s">c0</span><span class="nv"> </span><span class="s">{2,S}</span><span class="w"></span>
+
+<span class="w">    </span><span class="s">5</span><span class="nv"> </span><span class="s">*4</span><span class="nv"> </span><span class="s">H</span><span class="nv"> </span><span class="s">u0</span><span class="nv"> </span><span class="s">p0</span><span class="nv"> </span><span class="s">c0</span><span class="nv"> </span><span class="s">{2,S}</span><span class="w"></span>
+
+<span class="w">    </span><span class="s">6</span><span class="nv"> </span><span class="s">*1</span><span class="nv"> </span><span class="s">X</span><span class="nv"> </span><span class="s">u0</span><span class="nv"> </span><span class="s">p0</span><span class="nv"> </span><span class="s">c0</span><span class="nv"> </span><span class="s">{1,S}</span><span class="w"></span>
+
+<span class="w">    </span><span class="s">7</span><span class="nv"> </span><span class="s">*5</span><span class="nv"> </span><span class="s">X</span><span class="nv"> </span><span class="s">u0</span><span class="nv"> </span><span class="s">p0</span><span class="nv"> </span><span class="s">c0</span><span class="w"></span>
+
+<span class="w">    </span><span class="s">&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">reaction</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OC[Pt] &lt;=&gt; CO[Pt]</span><span class="w"></span>
+<span class="w">  </span><span class="nt">reaction_family</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Surface_Migration</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">index</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w"></span>
+<span class="w">    </span><span class="nt">reactant</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;multiplicity</span><span class="nv"> </span><span class="s">1</span><span class="w"></span>
+
+<span class="w">      </span><span class="s">1</span><span class="nv"> </span><span class="s">*3</span><span class="nv"> </span><span class="s">X</span><span class="nv"> </span><span class="s">u0</span><span class="nv"> </span><span class="s">p0</span><span class="nv"> </span><span class="s">c0</span><span class="nv"> </span><span class="s">{2,D}</span><span class="w"></span>
+
+<span class="w">      </span><span class="s">2</span><span class="nv"> </span><span class="s">*1</span><span class="nv"> </span><span class="s">O</span><span class="nv"> </span><span class="s">u0</span><span class="nv"> </span><span class="s">p2</span><span class="nv"> </span><span class="s">c0</span><span class="nv"> </span><span class="s">{1,D}</span><span class="w"></span>
+
+<span class="w">      </span><span class="s">3</span><span class="nv"> </span><span class="s">*2</span><span class="nv"> </span><span class="s">H</span><span class="nv"> </span><span class="s">u0</span><span class="nv"> </span><span class="s">p0</span><span class="nv"> </span><span class="s">c0</span><span class="nv"> </span><span class="s">{4,S}</span><span class="w"></span>
+
+<span class="w">      </span><span class="s">4</span><span class="nv"> </span><span class="s">*4</span><span class="nv"> </span><span class="s">X</span><span class="nv"> </span><span class="s">u0</span><span class="nv"> </span><span class="s">p0</span><span class="nv"> </span><span class="s">c0</span><span class="nv"> </span><span class="s">{3,S}</span><span class="w"></span>
+
+<span class="w">      </span><span class="s">&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">product</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;multiplicity</span><span class="nv"> </span><span class="s">1</span><span class="w"></span>
+
+<span class="w">      </span><span class="s">1</span><span class="nv"> </span><span class="s">*3</span><span class="nv"> </span><span class="s">X</span><span class="nv"> </span><span class="s">u0</span><span class="nv"> </span><span class="s">p0</span><span class="nv"> </span><span class="s">c0</span><span class="nv"> </span><span class="s">{2,S}</span><span class="w"></span>
+
+<span class="w">      </span><span class="s">2</span><span class="nv"> </span><span class="s">*1</span><span class="nv"> </span><span class="s">O</span><span class="nv"> </span><span class="s">u0</span><span class="nv"> </span><span class="s">p2</span><span class="nv"> </span><span class="s">c0</span><span class="nv"> </span><span class="s">{1,S}</span><span class="nv"> </span><span class="s">{3,S}</span><span class="w"></span>
+
+<span class="w">      </span><span class="s">3</span><span class="nv"> </span><span class="s">*2</span><span class="nv"> </span><span class="s">H</span><span class="nv"> </span><span class="s">u0</span><span class="nv"> </span><span class="s">p0</span><span class="nv"> </span><span class="s">c0</span><span class="nv"> </span><span class="s">{2,S}</span><span class="w"></span>
+
+<span class="w">      </span><span class="s">4</span><span class="nv"> </span><span class="s">*4</span><span class="nv"> </span><span class="s">X</span><span class="nv"> </span><span class="s">u0</span><span class="nv"> </span><span class="s">p0</span><span class="nv"> </span><span class="s">c0</span><span class="w"></span>
+
+<span class="w">      </span><span class="s">&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">reaction</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;[Pt]</span><span class="nv"> </span><span class="s">+</span><span class="nv"> </span><span class="s">O[Pt]</span><span class="nv"> </span><span class="s">&lt;=&gt;</span><span class="nv"> </span><span class="s">O=[Pt]</span><span class="nv"> </span><span class="s">+</span><span class="nv"> </span><span class="s">[H][Pt]&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="nt">reaction_family</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Surface_Dissociation</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="calling-pynta">
+<h2>Calling Pynta<a class="headerlink" href="#calling-pynta" title="Permalink to this heading">¶</a></h2>
+<p>An example python script for calling Pynta is available below.</p>
+<p>The Pynta function has many parameters. It is best to divide them based on what they are associated with. First there are
+the run parameters:</p>
+<p><strong>path</strong>: the directory in which Pynta will execute and save files</p>
+<p><strong>rxns_file</strong>: the location of the reactions.yaml file containing the reactions to calculate</p>
+<p>Second there are the Fireworks parameters:</p>
+<p><strong>launchpad_path</strong>: the path to the my_launchpad.yaml file, by default it will use your default my_launchpad.yaml</p>
+<p><strong>fworker_path</strong>: the path to the my_fworker.yaml file, by default it will use your default my_fworker.yaml</p>
+<p><strong>queue_adapter_path</strong>: the path to the my_qadapter.yaml file, by default it will use your default my_qadapter.yaml</p>
+<p><strong>reset_launchpad</strong>: if true Pynta will reset the Fireworks launchpad during construction, this will delete any existing workflows on fireworks and is usually undesirable</p>
+<p><strong>num_jobs</strong>: the number of jobs for Pynta to launch if running on multiple nodes outside a queue</p>
+<p><strong>queue</strong>: if true will run Fireworks in queue mode using the file at queue_adapter_path</p>
+<p>Third there are the slab specification parameters:</p>
+<p><strong>metal</strong>: the identity of the slab metal ex: Cu, Pt</p>
+<p><strong>surface_type</strong>: the facet ex: fcc111, bcc110</p>
+<p><strong>vacuum</strong>: the height of the vacuum in Angstroms above the slab in the cell</p>
+<p><strong>repeats</strong>: in general operation this should be [(1,1,1),(x,y,z)] where x,y,z are the number of atoms in the x,y and z directions in the slab</p>
+<p><strong>a</strong>: the lattice constant of the metal, if not specified and slab_path is not specified Pynta will calculate it</p>
+<p><strong>slab_path</strong>: path to the geometry of the slab, this will cause Pynta to skip slab generation, but must be consistent with metal, surface_type, vacuum and repeats</p>
+<p>Fourth there are the ASE parameters that control the quantum chemistry calculation execution. All of these parameters need to be
+specified in terms of what <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/">ASE</a> expects.</p>
+<p><strong>software</strong>: this is the string corresponding to an ASE calculator object. Pynta will search ASE for a calculator with this name.</p>
+<p><strong>software_kwargs</strong>: this is the dictionary of keyword arguments passed to the ASE calculator object on construction. This particular dictionary is the default set of arguments.</p>
+<p><strong>software_kwargs_gas</strong>: this is a dictionary of keyword arguments that should be different from software_kwargs when running gas phase calculations</p>
+<p><strong>TS_opt_software_kwargs</strong>: this is a dictionary of keyword arguments that should be different from software_kwargs when running saddle point optimizations</p>
+<p><strong>lattice_opt_software_kwargs</strong>: this is a dictionary of keyword arguments that should be different from software_kwargs when optimizing the lattice constant</p>
+<p>Lastly there are the Pynta energy filter criteria:</p>
+<p><strong>Eharmtol</strong>: a tolerance such that all TS/adsorbate guesses are always calculated if they have energies less than Emin * Eharmtol</p>
+<p><strong>Eharmfiltertol</strong>: a tolerance such that all TS/adsorbate guesses are never calculated if they have energies greater than Emin * Eharmfiltertol</p>
+<p><strong>Ntsmin</strong>: the minimum number of TS/adsorbate guesses. If the number of guesses with energies less than Emin * Eharmtol is less than Ntsmin Pynta will add the lowest energy guesses (that are less than Emin * Eharmfiltertol) until it has Ntsmin guesses.</p>
+<p>Pynta’s execute function has a few important options:</p>
+<p><strong>generate_initial_ad_guesses</strong>: if False Pynta will not generate initial adsorbate guesses and assume they are already in the appropriate directories.</p>
+<p><strong>calculate_adsorbates</strong>: if False Pynta will not generate Fireworks jobs for calculating adsorbates and will assume the results are already in the appropriate directories.</p>
+<p><strong>calculate_transition_states</strong>: if False Pynta will not generate Fireworks jobs for finding and calculating transition states</p>
+<p><strong>launch</strong>: if True Pynta will attempt to launch the Fireworks workflow in infinite mode after it is constructed. If False the workflow is still generated and added to the launchpad, but it is left up to the user to handle launching through Fireworks commands.</p>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright Copyright 2021 National Technology &amp; Engineering Solutions of Sandia, LLC (NTESS). Under the terms of Contract DE-NA0003525 with NTESS, the U.S. Government retains certain rights in this software.
+      <span class="lastupdated">
+        Last updated on Wed, 25 Jan 2023 16:24:48.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
