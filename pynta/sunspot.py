@@ -16,7 +16,7 @@ def createCommand(node, software):
     elif software == 'PWDFT':
         affinity = '/lus/eagle/projects/catalysis_aesp/raymundohe/bin/affinity.sh'
         #command = 'mpiexec --hosts {} -n 4 --ppn 4 --mem-bin list:0:1:2:3 --cpu-bind list:0-7:8-15:16-23:24-31 --env OMP_NUM_THREADS=1 {}  {} PREFIX.nwxi > PREFIX.nwxo'.format(node, affinity, binary)
-        #command = 'mpiexec -n 4 -ppn 4 --depth=4 --cpu-bind --cpu-bind=list:0,1:2,3  -env OMP_NUM_THREADS=1 {} {} PREFIX.nwxi > PREFIX.nwxo'.format(node, affinity, binary)
+        #command = 'mpiexec -n 4 -ppn 4 --depth=2 --cpu-bind=list:0,1:2,3  -env OMP_NUM_THREADS=1 {} {} PREFIX.nwxi > PREFIX.nwxo'.format(node, affinity, binary)
         command = 'mpiexec --hosts {} -n 4 -ppn 4 --depth=4 --cpu-bind --cpu-bind=list:0,1:2,3  -env OMP_NUM_THREADS=1 /soft/tools/mpi_wrapper_utils/gpu_tile_compact.sh  {} {} PREFIX.nwxi > PREFIX.nwxo'.format(node, affinity, binary)
         #command = 'mpiexec -n 4 -ppn 4 --depth=4 --cpu-bind --cpu-bind=list:0-7:8-15:16-23:24-31:32-39:40-47:52-59:60-67:68-75:76-83:84-91:92-99  -env OMP_NUM_THREADS=1 {} {} PREFIX.nwxi > PREFIX.nwxo'.format(node, affinity, binary)
 
